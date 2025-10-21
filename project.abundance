@@ -37,9 +37,142 @@
           "y": 0.5,
           "uniqueID": "4f302d4e-479b-485b-b1fa-1593ff3a96f3",
           "ioValues": []
+        },
+        {
+          "atomType": "Circle",
+          "name": "Circle",
+          "x": 0.2222222222222222,
+          "y": 0.37577639751552794,
+          "uniqueID": "287833cd-570a-4da0-8e16-2d343a50fa20",
+          "ioValues": [
+            {
+              "name": "diameter",
+              "ioValue": 38,
+              "currentEquation": "38"
+            }
+          ]
+        },
+        {
+          "atomType": "Circle",
+          "name": "Circle",
+          "x": 0.16230936819172115,
+          "y": 0.5869565217391304,
+          "uniqueID": "2cbb20b2-2884-434b-8d72-fd45ce90b4bf",
+          "ioValues": [
+            {
+              "name": "diameter",
+              "ioValue": 58,
+              "currentEquation": "58"
+            }
+          ]
+        },
+        {
+          "atomType": "Rectangle",
+          "name": "Rectangle",
+          "x": 0.24618736383442266,
+          "y": 0.8354037267080745,
+          "uniqueID": "2fe74f40-dda6-4d50-b557-a3335787e4df",
+          "ioValues": [
+            {
+              "name": "x length",
+              "ioValue": 10
+            },
+            {
+              "name": "y length",
+              "ioValue": 10
+            }
+          ]
+        },
+        {
+          "atomType": "Difference",
+          "name": "Difference",
+          "x": 0.3867102396514161,
+          "y": 0.42546583850931674,
+          "uniqueID": "23332b83-0739-4efd-8c88-f75ea46644c8",
+          "ioValues": []
+        },
+        {
+          "atomType": "Extrude",
+          "name": "Extrude",
+          "x": 0.5305010893246187,
+          "y": 0.2670807453416149,
+          "uniqueID": "47ee8f11-8c78-4272-9d31-f3d6ee7a665f",
+          "ioValues": [
+            {
+              "name": "height",
+              "ioValue": 10
+            }
+          ]
+        },
+        {
+          "atomType": "Extrude",
+          "name": "Extrude",
+          "x": 0.43899782135076254,
+          "y": 0.6770186335403726,
+          "uniqueID": "2d306e82-b897-46f5-890b-b3ae8edce222",
+          "ioValues": [
+            {
+              "name": "height",
+              "ioValue": 10
+            }
+          ]
+        },
+        {
+          "atomType": "Assembly",
+          "name": "Assembly",
+          "x": 0.8137254901960784,
+          "y": 0.5062111801242236,
+          "uniqueID": "fbab586f-d4d9-4d92-be67-6ab93ccc6319",
+          "ioValues": []
+        },
+        {
+          "atomType": "Rotate",
+          "name": "Rotate",
+          "x": 0.6503267973856209,
+          "y": 0.6645962732919254,
+          "uniqueID": "30448fb7-f1de-4de1-b105-994b3c8f6276",
+          "ioValues": [
+            {
+              "name": "x-axis degrees",
+              "ioValue": 0
+            },
+            {
+              "name": "y-axis degrees",
+              "ioValue": 0
+            },
+            {
+              "name": "z-axis degrees",
+              "ioValue": 0
+            }
+          ]
         }
       ],
-      "allConnectors": [],
+      "allConnectors": [
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "geometry2",
+          "ap1ID": "287833cd-570a-4da0-8e16-2d343a50fa20",
+          "ap2ID": "23332b83-0739-4efd-8c88-f75ea46644c8"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "geometry1",
+          "ap1ID": "2cbb20b2-2884-434b-8d72-fd45ce90b4bf",
+          "ap2ID": "23332b83-0739-4efd-8c88-f75ea46644c8"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "geometry",
+          "ap1ID": "2fe74f40-dda6-4d50-b557-a3335787e4df",
+          "ap2ID": "2d306e82-b897-46f5-890b-b3ae8edce222"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "geometry",
+          "ap1ID": "23332b83-0739-4efd-8c88-f75ea46644c8",
+          "ap2ID": "47ee8f11-8c78-4272-9d31-f3d6ee7a665f"
+        }
+      ],
       "fileTypeVersion": 1,
       "compiledBom": {}
     },
