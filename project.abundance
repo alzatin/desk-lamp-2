@@ -11,8 +11,7 @@
     },
     {
       "name": "thickness",
-      "ioValue": 15,
-      "currentEquation": "15"
+      "ioValue": 15
     }
   ],
   "topLevel": true,
@@ -35,10 +34,32 @@
       "type": "number"
     },
     {
+      "atomType": "Extrude",
+      "name": "Extrude",
+      "x": 0.39433551198257083,
+      "y": 0.6180124223602484,
+      "uniqueID": "377d78bf-82e0-42ee-878b-80f01f5f2097",
+      "ioValues": [
+        {
+          "name": "height",
+          "ioValue": 15
+        }
+      ]
+    },
+    {
+      "atomType": "Input",
+      "name": "thickness",
+      "x": 0.031349999999999996,
+      "y": 0.28500000000000003,
+      "uniqueID": "bb0ead44-8fd2-4cfe-9401-72b0c5a7e99c",
+      "ioValues": [],
+      "type": "number"
+    },
+    {
       "atomType": "Molecule",
       "name": "Bulb piece",
-      "x": 0.3616557734204793,
-      "y": 0.28260869565217395,
+      "x": 0.3671023965141612,
+      "y": 0.3322981366459627,
       "uniqueID": "e130e089-f625-4a47-82ad-28af30d9369e",
       "ioValues": [],
       "topLevel": false,
@@ -54,14 +75,14 @@
         {
           "atomType": "Circle",
           "name": "Circle",
-          "x": 0.2145969498910675,
-          "y": 0.3695652173913043,
+          "x": 0.21241830065359477,
+          "y": 0.36645962732919257,
           "uniqueID": "287833cd-570a-4da0-8e16-2d343a50fa20",
           "ioValues": [
             {
               "name": "diameter",
-              "ioValue": 380,
-              "currentEquation": "380"
+              "ioValue": 38,
+              "currentEquation": "38"
             }
           ]
         },
@@ -74,27 +95,27 @@
           "ioValues": [
             {
               "name": "diameter",
-              "ioValue": 600,
-              "currentEquation": "600"
+              "ioValue": 60,
+              "currentEquation": "60"
             }
           ]
         },
         {
           "atomType": "Rectangle",
           "name": "Rectangle",
-          "x": 0.27233115468409586,
-          "y": 0.6863354037267081,
+          "x": 0.27124183006535946,
+          "y": 0.6739130434782609,
           "uniqueID": "2fe74f40-dda6-4d50-b557-a3335787e4df",
           "ioValues": [
             {
               "name": "x length",
-              "ioValue": 300,
-              "currentEquation": "300"
+              "ioValue": 30,
+              "currentEquation": "30"
             },
             {
               "name": "y length",
-              "ioValue": 150,
-              "currentEquation": "150"
+              "ioValue": 15,
+              "currentEquation": "15"
             }
           ]
         },
@@ -109,28 +130,28 @@
         {
           "atomType": "Extrude",
           "name": "Extrude",
-          "x": 0.565359477124183,
+          "x": 0.5577342047930284,
           "y": 0.3105590062111801,
           "uniqueID": "47ee8f11-8c78-4272-9d31-f3d6ee7a665f",
           "ioValues": [
             {
               "name": "height",
-              "ioValue": 100,
-              "currentEquation": "100"
+              "ioValue": 10,
+              "currentEquation": "10"
             }
           ]
         },
         {
           "atomType": "Extrude",
           "name": "Extrude",
-          "x": 0.429193899782135,
-          "y": 0.6086956521739131,
+          "x": 0.42374727668845313,
+          "y": 0.5993788819875777,
           "uniqueID": "2d306e82-b897-46f5-890b-b3ae8edce222",
           "ioValues": [
             {
               "name": "height",
-              "ioValue": 150,
-              "currentEquation": "150"
+              "ioValue": 15,
+              "currentEquation": "15"
             }
           ]
         },
@@ -164,32 +185,32 @@
           "ioValues": [
             {
               "name": "xDist",
-              "ioValue": -50,
-              "currentEquation": "-50"
+              "ioValue": -5,
+              "currentEquation": "-5"
             },
             {
               "name": "yDist",
-              "ioValue": 300,
-              "currentEquation": "300"
+              "ioValue": 30,
+              "currentEquation": "30"
             },
             {
               "name": "zDist",
-              "ioValue": 150,
-              "currentEquation": "150"
+              "ioValue": 15,
+              "currentEquation": "15"
             }
           ]
         },
         {
           "atomType": "Fusion",
           "name": "Fusion",
-          "x": 0.6623093681917211,
-          "y": 0.19254658385093168,
+          "x": 0.6666666666666666,
+          "y": 0.1956521739130435,
           "uniqueID": "7c934d09-3751-41c8-b0f2-5b098c98f24d",
           "ioValues": [
             {
               "name": "Shape 1",
               "ioValue": {
-                "geometry": "extrude-cut-circle-300-circle-190-{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]}-100",
+                "geometry": "extrude-cut-circle-30-circle-19-{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]}-10",
                 "dimension": "3D",
                 "tags": [],
                 "plane": {
@@ -216,7 +237,7 @@
             {
               "name": "Shape 2",
               "ioValue": {
-                "geometry": "move-rotate-extrude-rectangle-300-150-{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]}-150-0-90-0--50-300-150",
+                "geometry": "move-rotate-extrude-rectangle-30-15-{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]}-15-0-90-0--5-30-15",
                 "dimension": "3D",
                 "plane": {
                   "origin": [
@@ -263,14 +284,13 @@
         {
           "atomType": "Extrude",
           "name": "Extrude",
-          "x": 0.4880174291938998,
-          "y": 0.8602484472049688,
+          "x": 0.48366013071895425,
+          "y": 0.8850931677018634,
           "uniqueID": "e9022076-045b-449b-b89b-389b63e85663",
           "ioValues": [
             {
               "name": "height",
-              "ioValue": 10,
-              "currentEquation": "10"
+              "ioValue": 10
             }
           ]
         },
@@ -325,8 +345,8 @@
           "ioValues": [
             {
               "name": "Fillet val",
-              "ioValue": 10,
-              "currentEquation": "10"
+              "ioValue": 1.5,
+              "currentEquation": "1.5"
             }
           ],
           "topLevel": false,
@@ -348,7 +368,7 @@
               "ioValues": [
                 {
                   "name": "fillet",
-                  "ioValue": 10
+                  "ioValue": 1.5
                 }
               ],
               "codeVersion": 1,
@@ -547,13 +567,11 @@
       "ioValues": [
         {
           "name": "corner radius",
-          "ioValue": 40,
-          "currentEquation": "40"
+          "ioValue": 40
         },
         {
           "name": "h",
-          "ioValue": 70,
-          "currentEquation": "70"
+          "ioValue": 70
         }
       ],
       "topLevel": false,
@@ -1012,41 +1030,19 @@
       "unitsKey": "Unitless",
       "fileTypeVersion": 1,
       "compiledBom": []
-    },
-    {
-      "atomType": "Extrude",
-      "name": "Extrude",
-      "x": 0.39433551198257083,
-      "y": 0.6180124223602484,
-      "uniqueID": "377d78bf-82e0-42ee-878b-80f01f5f2097",
-      "ioValues": [
-        {
-          "name": "height",
-          "ioValue": 15
-        }
-      ]
-    },
-    {
-      "atomType": "Input",
-      "name": "thickness",
-      "x": 0.031349999999999996,
-      "y": 0.28500000000000003,
-      "uniqueID": "bb0ead44-8fd2-4cfe-9401-72b0c5a7e99c",
-      "ioValues": [],
-      "type": "number"
     }
   ],
   "allConnectors": [
     {
-      "ap1Name": "geometry or number",
-      "ap2Name": "geometry",
-      "ap1ID": "00b6f4fa-8346-447d-aba4-53cba42f4f83",
-      "ap2ID": "377d78bf-82e0-42ee-878b-80f01f5f2097"
-    },
-    {
       "ap1Name": "number or geometry",
       "ap2Name": "height",
       "ap1ID": "bb0ead44-8fd2-4cfe-9401-72b0c5a7e99c",
+      "ap2ID": "377d78bf-82e0-42ee-878b-80f01f5f2097"
+    },
+    {
+      "ap1Name": "geometry or number",
+      "ap2Name": "geometry",
+      "ap1ID": "00b6f4fa-8346-447d-aba4-53cba42f4f83",
       "ap2ID": "377d78bf-82e0-42ee-878b-80f01f5f2097"
     }
   ],
