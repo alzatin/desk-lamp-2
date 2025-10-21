@@ -1,15 +1,61 @@
 {
-    "atomType": "Molecule",
-    "name": "desk-lamp-2",
-    "x": 0,
-    "y": 0,
-    "uniqueID": "6cd31f4e-e0d0-4ce6-ae34-657fa1fbfa3e",
-    "ioValues": [],
-    "topLevel": true,
-    "allAtoms": [],
-    "allConnectors": [],
-    "unitsKey": "MM",
-    "fileTypeVersion": 1,
-    "compiledBom": {},
-    "filetypeVersion": 1
+  "atomType": "Molecule",
+  "name": "desk-lamp-2",
+  "x": 0,
+  "y": 0,
+  "uniqueID": "6cd31f4e-e0d0-4ce6-ae34-657fa1fbfa3e",
+  "ioValues": [
+    {
+      "name": "bulb hole",
+      "ioValue": 15,
+      "currentEquation": "15"
+    }
+  ],
+  "topLevel": true,
+  "allAtoms": [
+    {
+      "atomType": "Output",
+      "name": "Output",
+      "x": 0.98,
+      "y": 0.5,
+      "uniqueID": "02e7df70-6f0a-4d04-8069-72cbb42a2902",
+      "ioValues": []
+    },
+    {
+      "atomType": "Molecule",
+      "name": "Bulb piece",
+      "x": 0.25163398692810457,
+      "y": 0.34782608695652173,
+      "uniqueID": "e130e089-f625-4a47-82ad-28af30d9369e",
+      "ioValues": [],
+      "topLevel": false,
+      "allAtoms": [
+        {
+          "atomType": "Output",
+          "name": "Output",
+          "x": 0.98,
+          "y": 0.5,
+          "uniqueID": "4f302d4e-479b-485b-b1fa-1593ff3a96f3",
+          "ioValues": []
+        }
+      ],
+      "allConnectors": [],
+      "fileTypeVersion": 1,
+      "compiledBom": {}
+    },
+    {
+      "atomType": "Input",
+      "name": "bulb hole",
+      "x": 0.031349999999999996,
+      "y": 0.19,
+      "uniqueID": "1ee5f1e8-a049-4774-8657-a22c6c1d3eda",
+      "ioValues": [],
+      "type": "number"
+    }
+  ],
+  "allConnectors": [],
+  "unitsKey": "MM",
+  "fileTypeVersion": 1,
+  "compiledBom": {},
+  "filetypeVersion": 1
 }
