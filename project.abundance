@@ -1,0 +1,15 @@
+{
+    "atomType": "Molecule",
+    "name": "desk-lamp-2",
+    "x": 0,
+    "y": 0,
+    "uniqueID": "6cd31f4e-e0d0-4ce6-ae34-657fa1fbfa3e",
+    "ioValues": [],
+    "topLevel": true,
+    "allAtoms": [],
+    "allConnectors": [],
+    "unitsKey": "MM",
+    "fileTypeVersion": 1,
+    "compiledBom": {},
+    "filetypeVersion": 1
+}
