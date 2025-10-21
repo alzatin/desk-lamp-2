@@ -69,8 +69,8 @@
         {
           "atomType": "Rectangle",
           "name": "Rectangle",
-          "x": 0.24618736383442266,
-          "y": 0.8322981366459627,
+          "x": 0.27233115468409586,
+          "y": 0.6863354037267081,
           "uniqueID": "2fe74f40-dda6-4d50-b557-a3335787e4df",
           "ioValues": [
             {
@@ -80,7 +80,8 @@
             },
             {
               "name": "y length",
-              "ioValue": 10
+              "ioValue": 15,
+              "currentEquation": "15"
             }
           ]
         },
@@ -108,8 +109,8 @@
         {
           "atomType": "Extrude",
           "name": "Extrude",
-          "x": 0.434640522875817,
-          "y": 0.7080745341614907,
+          "x": 0.42483660130718953,
+          "y": 0.6242236024844721,
           "uniqueID": "2d306e82-b897-46f5-890b-b3ae8edce222",
           "ioValues": [
             {
@@ -121,8 +122,8 @@
         {
           "atomType": "Rotate",
           "name": "Rotate",
-          "x": 0.5642701525054467,
-          "y": 0.6863354037267081,
+          "x": 0.5631808278867102,
+          "y": 0.6459627329192547,
           "uniqueID": "30448fb7-f1de-4de1-b105-994b3c8f6276",
           "ioValues": [
             {
@@ -143,8 +144,8 @@
         {
           "atomType": "Move",
           "name": "Move",
-          "x": 0.6884531590413944,
-          "y": 0.562111801242236,
+          "x": 0.6535947712418301,
+          "y": 0.5124223602484472,
           "uniqueID": "d1b1e1ca-826e-47f9-84aa-22a2b04db438",
           "ioValues": [
             {
@@ -159,16 +160,16 @@
             },
             {
               "name": "zDist",
-              "ioValue": -5,
-              "currentEquation": "-5"
+              "ioValue": 15,
+              "currentEquation": "15"
             }
           ]
         },
         {
           "atomType": "Fusion",
           "name": "Fusion",
-          "x": 0.7777777777777777,
-          "y": 0.42857142857142855,
+          "x": 0.6721132897603486,
+          "y": 0.19875776397515527,
           "uniqueID": "7c934d09-3751-41c8-b0f2-5b098c98f24d",
           "ioValues": [
             {
@@ -201,7 +202,7 @@
             {
               "name": "Shape 2",
               "ioValue": {
-                "geometry": "move-rotate-extrude-rectangle-30-10-{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]}-10-0-90-0--5-30--5",
+                "geometry": "move-rotate-extrude-rectangle-30-15-{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]}-10-0-90-0--5-30-15",
                 "dimension": "3D",
                 "plane": {
                   "origin": [
@@ -227,6 +228,223 @@
             }
           ],
           "unionType": "Fusion"
+        },
+        {
+          "atomType": "GitHubMolecule",
+          "name": "Fillet",
+          "x": 0.7483660130718954,
+          "y": 0.41304347826086957,
+          "uniqueID": "8f877f04-a57e-453d-8992-2a34a0329ffd",
+          "ioValues": [
+            {
+              "name": "Fillet val",
+              "ioValue": 0.5
+            }
+          ],
+          "topLevel": false,
+          "allAtoms": [
+            {
+              "atomType": "Output",
+              "name": "Output",
+              "x": 0.98,
+              "y": 0.5,
+              "uniqueID": "0af016ab-5784-4fd2-a72e-f7e4ee757273",
+              "ioValues": []
+            },
+            {
+              "atomType": "Code",
+              "name": "Code",
+              "x": 0.4893617021276595,
+              "y": 0.5903614457831325,
+              "uniqueID": "6703496a-c2f9-45f7-8fc8-395d6740f562",
+              "ioValues": [
+                {
+                  "name": "fillet",
+                  "ioValue": 0.5
+                }
+              ],
+              "codeVersion": 1,
+              "code": "\n      const Inputs = [\n       {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n      {inputName: \"fillet\", type: \"number\", defaultValue: .5},\n      \n      ]\n      //This defines the molecules inputs and creates variables with the same names which can be referenced in the code\n\n      //Takes the address and gets the shape from the library\n      let importedShape = library[shape]\n\n      //This makes a new copy of the shape and moves it in the X direction\n      let filletShape = importedShape.geometry[0].clone().fillet(fillet)\n\n      //Console.log works for debugging to better see what is happening under the hood\n      console.log(\"Shape:\")\n      console.log(importedShape);\n\n      //Shapes stored in the library have tags, a color, a plane, and a bill of materials like this. We don't modify them here\n      let shape1 = {\n        geometry: [filletShape],\n        tags: importedShape.tags,\n        color: importedShape.color,\n        plane: importedShape.plane,\n        bom: importedShape.bom\n      }\n\n    return shape1\n      "
+            },
+            {
+              "atomType": "Circle",
+              "name": "Circle",
+              "x": 0.19632495164410058,
+              "y": 0.38253012048192775,
+              "uniqueID": "96348405-7869-4df7-9a23-3b01cfe9dd34",
+              "ioValues": [
+                {
+                  "name": "diameter",
+                  "ioValue": 10
+                }
+              ]
+            },
+            {
+              "atomType": "Extrude",
+              "name": "Extrude",
+              "x": 0.33462282398452614,
+              "y": 0.4427710843373494,
+              "uniqueID": "89898e14-b1e1-4f94-88cd-854f76424263",
+              "ioValues": [
+                {
+                  "name": "height",
+                  "ioValue": 10
+                }
+              ]
+            },
+            {
+              "atomType": "Input",
+              "name": "3D-Shape",
+              "x": 0.031349999999999996,
+              "y": 0.19,
+              "uniqueID": "c81dcbe0-dfeb-4f24-95f0-cc3cdf27f1c9",
+              "ioValues": [],
+              "type": "geometry"
+            },
+            {
+              "atomType": "Input",
+              "name": "Fillet val",
+              "x": 0.031349999999999996,
+              "y": 0.28500000000000003,
+              "uniqueID": "ae3bda97-740a-4649-8ea4-f66b53681955",
+              "ioValues": [],
+              "type": "number"
+            }
+          ],
+          "allConnectors": [
+            {
+              "ap1Name": "output",
+              "ap2Name": "number or geometry",
+              "ap1ID": "6703496a-c2f9-45f7-8fc8-395d6740f562",
+              "ap2ID": "0af016ab-5784-4fd2-a72e-f7e4ee757273"
+            },
+            {
+              "ap1Name": "geometry",
+              "ap2Name": "geometry",
+              "ap1ID": "96348405-7869-4df7-9a23-3b01cfe9dd34",
+              "ap2ID": "89898e14-b1e1-4f94-88cd-854f76424263"
+            },
+            {
+              "ap1Name": "number or geometry",
+              "ap2Name": "shape",
+              "ap1ID": "c81dcbe0-dfeb-4f24-95f0-cc3cdf27f1c9",
+              "ap2ID": "6703496a-c2f9-45f7-8fc8-395d6740f562"
+            },
+            {
+              "ap1Name": "number or geometry",
+              "ap2Name": "fillet",
+              "ap1ID": "ae3bda97-740a-4649-8ea4-f66b53681955",
+              "ap2ID": "6703496a-c2f9-45f7-8fc8-395d6740f562"
+            }
+          ],
+          "parentRepo": {
+            "lastFoundGit": "2025-10-21T15:47:14.819Z",
+            "privateRepo": false,
+            "repoName": "Fillet",
+            "dateCreated": "2025-09-11T17:53:30Z",
+            "likes": 0,
+            "readMe": "https://raw.githubusercontent.com/alzatin/Fillet/master/README.md?sanitize=true",
+            "yyyy": 2025,
+            "topMoleculeID": "af7414ca-2d93-4ac0-abbd-27feee4ef8f1",
+            "githubMoleculesUsed": [],
+            "html_url": "https://github.com/alzatin/Fillet",
+            "topics": [
+              "abundance-tool"
+            ],
+            "parentRepo": null,
+            "forks": 0,
+            "dateModified": "739513",
+            "ranking": 0.6,
+            "searchField": "fillet alzatin fillet operation: receives a 3d shape and fillets the shape by a given value.  abundance-tool",
+            "owner": "alzatin",
+            "description": "Fillet operation: Receives a 3D shape and fillets the shape by a given value. ",
+            "contentURL": "https://raw.githubusercontent.com/alzatin/Fillet/master/project.abundance?sanitize=true",
+            "svgURL": "https://raw.githubusercontent.com/alzatin/Fillet/master/project.svg?sanitize=true",
+            "isLocal": false
+          },
+          "unitsKey": "Inches",
+          "fileTypeVersion": 1,
+          "compiledBom": []
+        },
+        {
+          "atomType": "Rectangle",
+          "name": "Rectangle",
+          "x": 0.32135076252723316,
+          "y": 0.8540372670807453,
+          "uniqueID": "15ca8a3c-12be-42cc-bc21-b28ad672ed4e",
+          "ioValues": [
+            {
+              "name": "x length",
+              "ioValue": 30
+            },
+            {
+              "name": "y length",
+              "ioValue": 15
+            }
+          ]
+        },
+        {
+          "atomType": "Extrude",
+          "name": "Extrude",
+          "x": 0.4749455337690632,
+          "y": 0.84472049689441,
+          "uniqueID": "e9022076-045b-449b-b89b-389b63e85663",
+          "ioValues": [
+            {
+              "name": "height",
+              "ioValue": 10
+            }
+          ]
+        },
+        {
+          "atomType": "Rotate",
+          "name": "Rotate",
+          "x": 0.6154684095860566,
+          "y": 0.8385093167701863,
+          "uniqueID": "bf17d176-9da1-4174-bbda-6023973020d5",
+          "ioValues": [
+            {
+              "name": "x-axis degrees",
+              "ioValue": 0
+            },
+            {
+              "name": "y-axis degrees",
+              "ioValue": 90
+            },
+            {
+              "name": "z-axis degrees",
+              "ioValue": 0
+            }
+          ]
+        },
+        {
+          "atomType": "Move",
+          "name": "Move",
+          "x": 0.6993464052287581,
+          "y": 0.7577639751552795,
+          "uniqueID": "339143d2-8253-48f9-bb4b-0620987c3917",
+          "ioValues": [
+            {
+              "name": "xDist",
+              "ioValue": -5
+            },
+            {
+              "name": "yDist",
+              "ioValue": 30
+            },
+            {
+              "name": "zDist",
+              "ioValue": 15
+            }
+          ]
+        },
+        {
+          "atomType": "Difference",
+          "name": "Difference",
+          "x": 0.8355119825708062,
+          "y": 0.5993788819875777,
+          "uniqueID": "c067e173-ed89-4eea-9a86-8e292c7eef83",
+          "ioValues": []
         }
       ],
       "allConnectors": [
@@ -277,6 +495,42 @@
           "ap2Name": "Shape 2",
           "ap1ID": "d1b1e1ca-826e-47f9-84aa-22a2b04db438",
           "ap2ID": "7c934d09-3751-41c8-b0f2-5b098c98f24d"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "3D-Shape",
+          "ap1ID": "7c934d09-3751-41c8-b0f2-5b098c98f24d",
+          "ap2ID": "8f877f04-a57e-453d-8992-2a34a0329ffd"
+        },
+        {
+          "ap1Name": "geometry or number",
+          "ap2Name": "geometry1",
+          "ap1ID": "8f877f04-a57e-453d-8992-2a34a0329ffd",
+          "ap2ID": "c067e173-ed89-4eea-9a86-8e292c7eef83"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "geometry",
+          "ap1ID": "15ca8a3c-12be-42cc-bc21-b28ad672ed4e",
+          "ap2ID": "e9022076-045b-449b-b89b-389b63e85663"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "geometry",
+          "ap1ID": "e9022076-045b-449b-b89b-389b63e85663",
+          "ap2ID": "bf17d176-9da1-4174-bbda-6023973020d5"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "geometry",
+          "ap1ID": "bf17d176-9da1-4174-bbda-6023973020d5",
+          "ap2ID": "339143d2-8253-48f9-bb4b-0620987c3917"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "geometry2",
+          "ap1ID": "339143d2-8253-48f9-bb4b-0620987c3917",
+          "ap2ID": "c067e173-ed89-4eea-9a86-8e292c7eef83"
         }
       ],
       "fileTypeVersion": 1,
