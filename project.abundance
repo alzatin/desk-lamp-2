@@ -27,8 +27,8 @@
     {
       "atomType": "Input",
       "name": "bulb hole",
-      "x": 0.031349999999999996,
-      "y": 0.19,
+      "x": 0.0264,
+      "y": 0.16,
       "uniqueID": "1ee5f1e8-a049-4774-8657-a22c6c1d3eda",
       "ioValues": [],
       "type": "number"
@@ -36,11 +36,161 @@
     {
       "atomType": "Input",
       "name": "thickness",
-      "x": 0.031349999999999996,
-      "y": 0.28500000000000003,
+      "x": 0.0264,
+      "y": 0.24,
       "uniqueID": "bb0ead44-8fd2-4cfe-9401-72b0c5a7e99c",
       "ioValues": [],
       "type": "number"
+    },
+    {
+      "atomType": "Molecule",
+      "name": "Molecule",
+      "x": 0.4369127516778524,
+      "y": 0.6708074534161491,
+      "uniqueID": "ee346790-0e77-4040-b939-ac999586e599",
+      "ioValues": [],
+      "topLevel": false,
+      "allAtoms": [
+        {
+          "atomType": "Output",
+          "name": "Output",
+          "x": 0.98,
+          "y": 0.5,
+          "uniqueID": "ae833fdd-1ba2-4ecb-9970-1ad541f5c596",
+          "ioValues": []
+        },
+        {
+          "atomType": "Rectangle",
+          "name": "Rectangle",
+          "x": 0.2390331244404655,
+          "y": 0.4906832298136645,
+          "uniqueID": "ab9dce64-4411-4f75-8d1f-41dabab4d5e1",
+          "ioValues": [
+            {
+              "name": "x length",
+              "ioValue": 100
+            },
+            {
+              "name": "y length",
+              "ioValue": 10
+            }
+          ]
+        },
+        {
+          "atomType": "Code",
+          "name": "Code",
+          "x": 0.5102954341987466,
+          "y": 0.24534161490683226,
+          "uniqueID": "476b4016-53d8-4d25-8574-49722be1a178",
+          "ioValues": [
+            {
+              "name": "dovetailWidth",
+              "ioValue": 5
+            },
+            {
+              "name": "dovetailHeight",
+              "ioValue": 10
+            },
+            {
+              "name": "dovetailDepth",
+              "ioValue": 5
+            },
+            {
+              "name": "dovetailX",
+              "ioValue": 0
+            },
+            {
+              "name": "dovetailY",
+              "ioValue": 0
+            },
+            {
+              "name": "dovetailZ",
+              "ioValue": 0
+            }
+          ],
+          "codeVersion": 1,
+          "code": "const Inputs = [\n  {inputName: \"dovetailWidth\", type: \"number\", defaultValue: 5},\n  {inputName: \"dovetailHeight\", type: \"number\", defaultValue: 10},\n  {inputName: \"dovetailDepth\", type: \"number\", defaultValue: 5},\n  {inputName: \"dovetailX\", type: \"number\", defaultValue: 0},\n  {inputName: \"dovetailY\", type: \"number\", defaultValue: 0},\n  {inputName: \"dovetailZ\", type: \"number\", defaultValue: 0}\n];\n\n\n\n //Create a new shape from scratch using replicad\n      let createdRectangle = replicad.drawRectangle(5, 7)\n      const newPlane = new replicad.Plane().pivot(0, 'Y')\n      let createdShape = createdRectangle.sketchOnPlane(newPlane).extrude(dovetailHeight)\n\n      //Wrap the raw replicad geometry in our assembly format\n      let shape2 = {\n          geometry: [createdShape],\n          dimension: \"3D\",\n          tags: [\"createdShape\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\nreturn shape2\n\n//dovetailCutter = await Move(dovetailCutter, dovetailX, dovetailY, dovetailZ);\n\n// Subtract dovetail from input shape\n//let dovetailedShape = await CutAssembly(dovetailCutter,importedShape);\n\nreturn shape2;"
+        },
+        {
+          "atomType": "Code",
+          "name": "Code",
+          "x": 0.5595344673231871,
+          "y": 0.6521739130434783,
+          "uniqueID": "f85b090b-011e-4dca-8274-1748ba8d2dba",
+          "ioValues": [
+            {
+              "name": "dist",
+              "ioValue": 5
+            },
+            {
+              "name": "height",
+              "ioValue": 10
+            }
+          ],
+          "codeVersion": 1,
+          "code": "\n      const Inputs = [\n       {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n      {inputName: \"dist\", type: \"number\", defaultValue: 5},\n        {inputName: \"height\", type: \"number\", defaultValue: 10}\n      ]\n      //This defines the molecules inputs and creates variables with the same names which can be referenced in the code\n\n      //Gets the shape from the library - no need to clone or access geometry directly\n      let importedShape = library[shape]\n\n      //Use the built-in Move function to move the shape in the X direction\n      let movedShape = await Move(importedShape, dist, 0, 0)\n\n      //Use the built-in Rotate function to rotate the shape\n      let rotatedShape = await Rotate(importedShape, 0, 45, 0)\n\n      //Use the built-in Scale function to make the shape smaller\n      let scaledShape = await Scale(importedShape, 0.8)\n\n      //Console.log works for debugging to better see what is happening under the hood\n      console.log(\"Original shape bounds:\", GetBounds(importedShape))\n      console.log(\"Moved shape bounds:\", GetBounds(movedShape))\n\n      //Create a new shape from scratch using replicad\n      let createdRectangle = replicad.drawRectangle(5, 7)\n      const newPlane = new replicad.Plane().pivot(0, 'Y')\n      let createdShape = createdRectangle.sketchOnPlane(newPlane).extrude(height)\n\n      //Wrap the raw replicad geometry in our assembly format\n      let shape2 = {\n          geometry: [createdShape],\n          dimension: \"3D\",\n          tags: [\"createdShape\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\n\n      //Use the built-in Fillet function to round the edges\n      let filletedShape = await Fillet(shape2, 0.5)\n\n      //Use the built-in Chamfer function to bevel the edges  \n      let chamferedShape = await Chamfer(movedShape, 0.3)\n\n      //Use the built-in Assembly function to combine multiple shapes\n      let finalAssembly = await Assembly([rotatedShape, scaledShape, filletedShape, chamferedShape])\n\n      //You can also create boolean operations using Intersect\n      //let intersection = await Intersect(movedShape, rotatedShape)\n\n      return finalAssembly\n\n      /**\n      Built-in Functions Available:\n      - Move(geometry, x, y, z) - Move a shape in 3D space\n      - Rotate(geometry, x, y, z) - Rotate a shape around X, Y, Z axes (degrees)\n      - Scale(geometry, factor) - Scale a shape by a factor\n      - Assembly([shapes]) - Combine multiple shapes into an assembly\n      - Intersect(shape1, shape2) - Boolean intersection of two shapes\n      - GetBounds(geometry) - Get the bounding box of a shape\n      - Fillet(geometry, radius) - Round edges with specified radius\n      - Chamfer(geometry, size) - Bevel edges with specified size\n\n      To Use the Code Atom, enter your inputs to the input list as an object array:\n      const Inputs = [\n        {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n        {inputName: \"dist\", type: \"number\", defaultValue: 5},\n        {inputName: \"height\", type: \"number\", defaultValue: 10}\n      ]\n\n      Access imported geometry using library[inputName] - the built-in functions handle \n      the complexity of accessing geometry arrays and maintaining metadata automatically.\n\n      Simple Example - Move a shape:\n         const Inputs = [\n          {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n          {inputName: \"x\", type: \"number\", defaultValue: 5}\n        ]\n        let movedShape = await Move(library[shape], x, 0, 0)\n        return movedShape\n      */\n      "
+        },
+        {
+          "atomType": "Extrude",
+          "name": "Extrude",
+          "x": 0.3178155774395703,
+          "y": 0.7391304347826086,
+          "uniqueID": "81657b52-22c7-4f96-91fd-dd03d72be4ee",
+          "ioValues": [
+            {
+              "name": "height",
+              "ioValue": 10
+            }
+          ]
+        },
+        {
+          "atomType": "Gcode",
+          "name": "Gcode",
+          "x": 0.5335720680393912,
+          "y": 0.48136645962732916,
+          "uniqueID": "71851014-9055-4aca-a72f-39c96bcc8ac9",
+          "ioValues": [
+            {
+              "name": "Tool Size",
+              "ioValue": 6.35
+            },
+            {
+              "name": "Passes",
+              "ioValue": 1
+            },
+            {
+              "name": "Speed",
+              "ioValue": 1500
+            },
+            {
+              "name": "Cut Through",
+              "ioValue": 0
+            },
+            {
+              "name": "Part Name",
+              "ioValue": "Molecule"
+            }
+          ],
+          "partName": "Molecule",
+          "sortDirection": "Left"
+        }
+      ],
+      "allConnectors": [
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "geometry",
+          "ap1ID": "ab9dce64-4411-4f75-8d1f-41dabab4d5e1",
+          "ap2ID": "81657b52-22c7-4f96-91fd-dd03d72be4ee"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "geometry",
+          "ap1ID": "81657b52-22c7-4f96-91fd-dd03d72be4ee",
+          "ap2ID": "71851014-9055-4aca-a72f-39c96bcc8ac9"
+        }
+      ],
+      "fileTypeVersion": 1,
+      "compiledBom": {}
     },
     {
       "atomType": "Molecule",
@@ -233,8 +383,8 @@
         {
           "atomType": "Input",
           "name": "thickness",
-          "x": 0.031349999999999996,
-          "y": 0.19,
+          "x": 0.0264,
+          "y": 0.16,
           "uniqueID": "e8e672d5-43f9-407c-a293-3ed177ab95ed",
           "ioValues": [],
           "type": "number"
@@ -577,8 +727,8 @@
                 {
                   "atomType": "Input",
                   "name": "3D-Shape",
-                  "x": 0.031349999999999996,
-                  "y": 0.19,
+                  "x": 0.0264,
+                  "y": 0.16,
                   "uniqueID": "f52a016e-1747-4764-8a5c-7ff6a463c71d",
                   "ioValues": [],
                   "type": "geometry"
@@ -586,8 +736,8 @@
                 {
                   "atomType": "Input",
                   "name": "Fillet val",
-                  "x": 0.031349999999999996,
-                  "y": 0.28500000000000003,
+                  "x": 0.0264,
+                  "y": 0.24,
                   "uniqueID": "498df75c-3ed6-4ee3-a109-28f5ca189034",
                   "ioValues": [],
                   "type": "number"
@@ -761,8 +911,8 @@
             {
               "atomType": "Input",
               "name": "corner radius",
-              "x": 0.031349999999999996,
-              "y": 0.19,
+              "x": 0.0264,
+              "y": 0.16,
               "uniqueID": "68523fee-90c2-45c8-a01c-18f9a55be6ef",
               "ioValues": [],
               "type": "number"
@@ -917,8 +1067,8 @@
             {
               "atomType": "Input",
               "name": "h",
-              "x": 0.031349999999999996,
-              "y": 0.28500000000000003,
+              "x": 0.0264,
+              "y": 0.24,
               "uniqueID": "24470573-b606-4b14-bd2a-fecbccbbda25",
               "ioValues": [],
               "type": "number"
@@ -1036,8 +1186,8 @@
                 {
                   "atomType": "Input",
                   "name": "Number",
-                  "x": 0.031349999999999996,
-                  "y": 0.19,
+                  "x": 0.0264,
+                  "y": 0.16,
                   "uniqueID": "8fd64f9a-1f48-49cb-b01b-127d21447d74",
                   "ioValues": [],
                   "type": "number"
@@ -1045,8 +1195,8 @@
                 {
                   "atomType": "Input",
                   "name": "Angle",
-                  "x": 0.031349999999999996,
-                  "y": 0.28500000000000003,
+                  "x": 0.0264,
+                  "y": 0.24,
                   "uniqueID": "3eeeae49-d407-420a-bbc1-104219acf7e4",
                   "ioValues": [],
                   "type": "number"
@@ -1054,8 +1204,8 @@
                 {
                   "atomType": "Input",
                   "name": "Shape",
-                  "x": 0.031349999999999996,
-                  "y": 0.38,
+                  "x": 0.0264,
+                  "y": 0.32,
                   "uniqueID": "b4dd523f-4caa-421f-b14a-dbdcd20af608",
                   "ioValues": [],
                   "type": "number"
@@ -1258,100 +1408,6 @@
       ],
       "fileTypeVersion": 1,
       "compiledBom": []
-    },
-    {
-      "atomType": "Molecule",
-      "name": "Molecule",
-      "x": 0.4369127516778524,
-      "y": 0.6708074534161491,
-      "uniqueID": "ee346790-0e77-4040-b939-ac999586e599",
-      "ioValues": [],
-      "topLevel": false,
-      "allAtoms": [
-        {
-          "atomType": "Output",
-          "name": "Output",
-          "x": 0.98,
-          "y": 0.5,
-          "uniqueID": "ae833fdd-1ba2-4ecb-9970-1ad541f5c596",
-          "ioValues": []
-        },
-        {
-          "atomType": "Rectangle",
-          "name": "Rectangle",
-          "x": 0.2390331244404655,
-          "y": 0.4906832298136645,
-          "uniqueID": "ab9dce64-4411-4f75-8d1f-41dabab4d5e1",
-          "ioValues": [
-            {
-              "name": "x length",
-              "ioValue": 100,
-              "currentEquation": "100"
-            },
-            {
-              "name": "y length",
-              "ioValue": 10
-            }
-          ]
-        },
-        {
-          "atomType": "Code",
-          "name": "Code",
-          "x": 0.5102954341987466,
-          "y": 0.24534161490683226,
-          "uniqueID": "476b4016-53d8-4d25-8574-49722be1a178",
-          "ioValues": [
-            {
-              "name": "dovetailWidth",
-              "ioValue": 5
-            },
-            {
-              "name": "dovetailHeight",
-              "ioValue": 10
-            },
-            {
-              "name": "dovetailDepth",
-              "ioValue": 5
-            },
-            {
-              "name": "dovetailX",
-              "ioValue": 0
-            },
-            {
-              "name": "dovetailY",
-              "ioValue": 0
-            },
-            {
-              "name": "dovetailZ",
-              "ioValue": 0
-            }
-          ],
-          "codeVersion": 1,
-          "code": "const Inputs = [\n  {inputName: \"dovetailWidth\", type: \"number\", defaultValue: 5},\n  {inputName: \"dovetailHeight\", type: \"number\", defaultValue: 10},\n  {inputName: \"dovetailDepth\", type: \"number\", defaultValue: 5},\n  {inputName: \"dovetailX\", type: \"number\", defaultValue: 0},\n  {inputName: \"dovetailY\", type: \"number\", defaultValue: 0},\n  {inputName: \"dovetailZ\", type: \"number\", defaultValue: 0}\n];\n\n\n\n //Create a new shape from scratch using replicad\n      let createdRectangle = replicad.drawRectangle(5, 7)\n      const newPlane = new replicad.Plane().pivot(0, 'Y')\n      let createdShape = createdRectangle.sketchOnPlane(newPlane).extrude(dovetailHeight)\n\n      //Wrap the raw replicad geometry in our assembly format\n      let shape2 = {\n          geometry: [createdShape],\n          dimension: \"3D\",\n          tags: [\"createdShape\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\nreturn shape2\n\n//dovetailCutter = await Move(dovetailCutter, dovetailX, dovetailY, dovetailZ);\n\n// Subtract dovetail from input shape\n//let dovetailedShape = await CutAssembly(dovetailCutter,importedShape);\n\nreturn shape2;"
-        },
-        {
-          "atomType": "Code",
-          "name": "Code",
-          "x": 0.5595344673231871,
-          "y": 0.6521739130434783,
-          "uniqueID": "f85b090b-011e-4dca-8274-1748ba8d2dba",
-          "ioValues": [
-            {
-              "name": "dist",
-              "ioValue": 5
-            },
-            {
-              "name": "height",
-              "ioValue": 10
-            }
-          ],
-          "codeVersion": 1,
-          "code": "\n      const Inputs = [\n       {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n      {inputName: \"dist\", type: \"number\", defaultValue: 5},\n        {inputName: \"height\", type: \"number\", defaultValue: 10}\n      ]\n      //This defines the molecules inputs and creates variables with the same names which can be referenced in the code\n\n      //Gets the shape from the library - no need to clone or access geometry directly\n      let importedShape = library[shape]\n\n      //Use the built-in Move function to move the shape in the X direction\n      let movedShape = await Move(importedShape, dist, 0, 0)\n\n      //Use the built-in Rotate function to rotate the shape\n      let rotatedShape = await Rotate(importedShape, 0, 45, 0)\n\n      //Use the built-in Scale function to make the shape smaller\n      let scaledShape = await Scale(importedShape, 0.8)\n\n      //Console.log works for debugging to better see what is happening under the hood\n      console.log(\"Original shape bounds:\", GetBounds(importedShape))\n      console.log(\"Moved shape bounds:\", GetBounds(movedShape))\n\n      //Create a new shape from scratch using replicad\n      let createdRectangle = replicad.drawRectangle(5, 7)\n      const newPlane = new replicad.Plane().pivot(0, 'Y')\n      let createdShape = createdRectangle.sketchOnPlane(newPlane).extrude(height)\n\n      //Wrap the raw replicad geometry in our assembly format\n      let shape2 = {\n          geometry: [createdShape],\n          dimension: \"3D\",\n          tags: [\"createdShape\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\n\n      //Use the built-in Fillet function to round the edges\n      let filletedShape = await Fillet(shape2, 0.5)\n\n      //Use the built-in Chamfer function to bevel the edges  \n      let chamferedShape = await Chamfer(movedShape, 0.3)\n\n      //Use the built-in Assembly function to combine multiple shapes\n      let finalAssembly = await Assembly([rotatedShape, scaledShape, filletedShape, chamferedShape])\n\n      //You can also create boolean operations using Intersect\n      //let intersection = await Intersect(movedShape, rotatedShape)\n\n      return finalAssembly\n\n      /**\n      Built-in Functions Available:\n      - Move(geometry, x, y, z) - Move a shape in 3D space\n      - Rotate(geometry, x, y, z) - Rotate a shape around X, Y, Z axes (degrees)\n      - Scale(geometry, factor) - Scale a shape by a factor\n      - Assembly([shapes]) - Combine multiple shapes into an assembly\n      - Intersect(shape1, shape2) - Boolean intersection of two shapes\n      - GetBounds(geometry) - Get the bounding box of a shape\n      - Fillet(geometry, radius) - Round edges with specified radius\n      - Chamfer(geometry, size) - Bevel edges with specified size\n\n      To Use the Code Atom, enter your inputs to the input list as an object array:\n      const Inputs = [\n        {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n        {inputName: \"dist\", type: \"number\", defaultValue: 5},\n        {inputName: \"height\", type: \"number\", defaultValue: 10}\n      ]\n\n      Access imported geometry using library[inputName] - the built-in functions handle \n      the complexity of accessing geometry arrays and maintaining metadata automatically.\n\n      Simple Example - Move a shape:\n         const Inputs = [\n          {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n          {inputName: \"x\", type: \"number\", defaultValue: 5}\n        ]\n        let movedShape = await Move(library[shape], x, 0, 0)\n        return movedShape\n      */\n      "
-        }
-      ],
-      "allConnectors": [],
-      "fileTypeVersion": 1,
-      "compiledBom": {}
     }
   ],
   "allConnectors": [
