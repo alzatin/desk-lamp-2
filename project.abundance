@@ -45,8 +45,8 @@
     {
       "atomType": "Molecule",
       "name": "Molecule",
-      "x": 0.4369127516778524,
-      "y": 0.6708074534161491,
+      "x": 0.5862676056338029,
+      "y": 0.3012422360248447,
       "uniqueID": "ee346790-0e77-4040-b939-ac999586e599",
       "ioValues": [],
       "topLevel": false,
@@ -469,30 +469,7 @@
                 },
                 {
                   "name": "Shape 2",
-                  "ioValue": {
-                    "geometry": "move-rotate-extrude-rectangle-30-15-{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]}-15-0-90-0--5-30-15",
-                    "dimension": "3D",
-                    "plane": {
-                      "origin": [
-                        0,
-                        0,
-                        0
-                      ],
-                      "xDir": [
-                        1,
-                        0,
-                        0
-                      ],
-                      "normal": [
-                        0,
-                        0,
-                        1
-                      ]
-                    },
-                    "color": "#aad7f2",
-                    "tags": [],
-                    "bom": []
-                  }
+                  "ioValue": null
                 }
               ],
               "unionType": "Fusion"
