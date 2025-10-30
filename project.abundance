@@ -27,8 +27,8 @@
     {
       "atomType": "Input",
       "name": "bulb hole",
-      "x": 0.0264,
-      "y": 0.16,
+      "x": 0.031349999999999996,
+      "y": 0.19,
       "uniqueID": "1ee5f1e8-a049-4774-8657-a22c6c1d3eda",
       "ioValues": [],
       "type": "number"
@@ -36,8 +36,8 @@
     {
       "atomType": "Input",
       "name": "thickness",
-      "x": 0.0264,
-      "y": 0.24,
+      "x": 0.031349999999999996,
+      "y": 0.28500000000000003,
       "uniqueID": "bb0ead44-8fd2-4cfe-9401-72b0c5a7e99c",
       "ioValues": [],
       "type": "number"
@@ -383,8 +383,8 @@
         {
           "atomType": "Input",
           "name": "thickness",
-          "x": 0.0264,
-          "y": 0.16,
+          "x": 0.031349999999999996,
+          "y": 0.19,
           "uniqueID": "e8e672d5-43f9-407c-a293-3ed177ab95ed",
           "ioValues": [],
           "type": "number"
@@ -727,8 +727,8 @@
                 {
                   "atomType": "Input",
                   "name": "3D-Shape",
-                  "x": 0.0264,
-                  "y": 0.16,
+                  "x": 0.031349999999999996,
+                  "y": 0.19,
                   "uniqueID": "f52a016e-1747-4764-8a5c-7ff6a463c71d",
                   "ioValues": [],
                   "type": "geometry"
@@ -736,8 +736,8 @@
                 {
                   "atomType": "Input",
                   "name": "Fillet val",
-                  "x": 0.0264,
-                  "y": 0.24,
+                  "x": 0.031349999999999996,
+                  "y": 0.28500000000000003,
                   "uniqueID": "498df75c-3ed6-4ee3-a109-28f5ca189034",
                   "ioValues": [],
                   "type": "number"
@@ -911,8 +911,8 @@
             {
               "atomType": "Input",
               "name": "corner radius",
-              "x": 0.0264,
-              "y": 0.16,
+              "x": 0.031349999999999996,
+              "y": 0.19,
               "uniqueID": "68523fee-90c2-45c8-a01c-18f9a55be6ef",
               "ioValues": [],
               "type": "number"
@@ -1067,8 +1067,8 @@
             {
               "atomType": "Input",
               "name": "h",
-              "x": 0.0264,
-              "y": 0.24,
+              "x": 0.031349999999999996,
+              "y": 0.28500000000000003,
               "uniqueID": "24470573-b606-4b14-bd2a-fecbccbbda25",
               "ioValues": [],
               "type": "number"
@@ -1186,8 +1186,8 @@
                 {
                   "atomType": "Input",
                   "name": "Number",
-                  "x": 0.0264,
-                  "y": 0.16,
+                  "x": 0.031349999999999996,
+                  "y": 0.19,
                   "uniqueID": "8fd64f9a-1f48-49cb-b01b-127d21447d74",
                   "ioValues": [],
                   "type": "number"
@@ -1195,8 +1195,8 @@
                 {
                   "atomType": "Input",
                   "name": "Angle",
-                  "x": 0.0264,
-                  "y": 0.24,
+                  "x": 0.031349999999999996,
+                  "y": 0.28500000000000003,
                   "uniqueID": "3eeeae49-d407-420a-bbc1-104219acf7e4",
                   "ioValues": [],
                   "type": "number"
@@ -1204,8 +1204,8 @@
                 {
                   "atomType": "Input",
                   "name": "Shape",
-                  "x": 0.0264,
-                  "y": 0.32,
+                  "x": 0.031349999999999996,
+                  "y": 0.38,
                   "uniqueID": "b4dd523f-4caa-421f-b14a-dbdcd20af608",
                   "ioValues": [],
                   "type": "number"
