@@ -45,8 +45,8 @@
     {
       "atomType": "Molecule",
       "name": "Molecule",
-      "x": 0.3626666666666667,
-      "y": 0.6242236024844721,
+      "x": 0.3635555555555556,
+      "y": 0.6055900621118013,
       "uniqueID": "ee346790-0e77-4040-b939-ac999586e599",
       "ioValues": [],
       "topLevel": false,
@@ -79,8 +79,8 @@
         {
           "atomType": "Code",
           "name": "Code",
-          "x": 0.5831111111111111,
-          "y": 0.40062111801242234,
+          "x": 0.5893333333333334,
+          "y": 0.37888198757763975,
           "uniqueID": "476b4016-53d8-4d25-8574-49722be1a178",
           "ioValues": [
             {
@@ -215,8 +215,7 @@
           "ioValues": [
             {
               "name": "xDist",
-              "ioValue": 10,
-              "currentEquation": "10"
+              "ioValue": 10
             },
             {
               "name": "yDist",
