@@ -62,8 +62,8 @@
         {
           "atomType": "Rectangle",
           "name": "Rectangle",
-          "x": 0.136,
-          "y": 0.6739130434782609,
+          "x": 0.11822222222222223,
+          "y": 0.49689440993788814,
           "uniqueID": "ab9dce64-4411-4f75-8d1f-41dabab4d5e1",
           "ioValues": [
             {
@@ -77,64 +77,10 @@
           ]
         },
         {
-          "atomType": "Code",
-          "name": "Code",
-          "x": 0.5582222222222222,
-          "y": 0.37577639751552794,
-          "uniqueID": "476b4016-53d8-4d25-8574-49722be1a178",
-          "ioValues": [
-            {
-              "name": "dovetailWidth",
-              "ioValue": 5
-            },
-            {
-              "name": "dovetailHeight",
-              "ioValue": 10
-            },
-            {
-              "name": "dovetailDepth",
-              "ioValue": 5
-            },
-            {
-              "name": "dovetailX",
-              "ioValue": 0
-            },
-            {
-              "name": "dovetailY",
-              "ioValue": 0
-            },
-            {
-              "name": "dovetailZ",
-              "ioValue": 0
-            }
-          ],
-          "codeVersion": 1,
-          "code": "const Inputs = [\n  {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n  {inputName: \"shape2\", type: \"geometry\", defaultValue: null},\n  {inputName: \"dovetailWidth\", type: \"number\", defaultValue: 5},\n  {inputName: \"dovetailHeight\", type: \"number\", defaultValue: 10},\n  {inputName: \"dovetailDepth\", type: \"number\", defaultValue: 5},\n  {inputName: \"dovetailX\", type: \"number\", defaultValue: 0},\n  {inputName: \"dovetailY\", type: \"number\", defaultValue: 0},\n  {inputName: \"dovetailZ\", type: \"number\", defaultValue: 0}\n];\n\n\nlet importedShape = library[shape]\nlet importedShape2 = library[shape2]\n //Create a new shape from scratch using replicad\n      let createdRectangle = replicad.drawRectangle(5, 7)\n      const newPlane = new replicad.Plane().pivot(0, 'Y')\n      let createdShape = createdRectangle.sketchOnPlane(newPlane).extrude(dovetailHeight)\n\n      //Wrap the raw replicad geometry in our assembly format\n      let shape2 = {\n          geometry: [createdShape],\n          dimension: \"3D\",\n          tags: [\"createdShape\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\n\n\n//dovetailCutter = await Move(dovetailCutter, dovetailX, dovetailY, dovetailZ);\n\n// Subtract dovetail from input shape\nlet dovetailedShape = await CutAssembly(importedShape2,importedShape);\n\nreturn dovetailedShape;"
-        },
-        {
-          "atomType": "Code",
-          "name": "Code",
-          "x": 0.5582222222222222,
-          "y": 0.8726708074534161,
-          "uniqueID": "f85b090b-011e-4dca-8274-1748ba8d2dba",
-          "ioValues": [
-            {
-              "name": "dist",
-              "ioValue": 5
-            },
-            {
-              "name": "height",
-              "ioValue": 10
-            }
-          ],
-          "codeVersion": 1,
-          "code": "\n      const Inputs = [\n       {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n      {inputName: \"dist\", type: \"number\", defaultValue: 5},\n        {inputName: \"height\", type: \"number\", defaultValue: 10}\n      ]\n      //This defines the molecules inputs and creates variables with the same names which can be referenced in the code\n\n      //Gets the shape from the library - no need to clone or access geometry directly\n      let importedShape = library[shape]\n\n      //Use the built-in Move function to move the shape in the X direction\n      let movedShape = await Move(importedShape, dist, 0, 0)\n\n      //Use the built-in Rotate function to rotate the shape\n      let rotatedShape = await Rotate(importedShape, 0, 45, 0)\n\n      //Use the built-in Scale function to make the shape smaller\n      let scaledShape = await Scale(importedShape, 0.8)\n\n      //Console.log works for debugging to better see what is happening under the hood\n      console.log(\"Original shape bounds:\", GetBounds(importedShape))\n      console.log(\"Moved shape bounds:\", GetBounds(movedShape))\n\n      //Create a new shape from scratch using replicad\n      let createdRectangle = replicad.drawRectangle(5, 7)\n      const newPlane = new replicad.Plane().pivot(0, 'Y')\n      let createdShape = createdRectangle.sketchOnPlane(newPlane).extrude(height)\n\n      //Wrap the raw replicad geometry in our assembly format\n      let shape2 = {\n          geometry: [createdShape],\n          dimension: \"3D\",\n          tags: [\"createdShape\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\n\n      //Use the built-in Fillet function to round the edges\n      let filletedShape = await Fillet(shape2, 0.5)\n\n      //Use the built-in Chamfer function to bevel the edges  \n      let chamferedShape = await Chamfer(movedShape, 0.3)\n\n      //Use the built-in Assembly function to combine multiple shapes\n      let finalAssembly = await Assembly([rotatedShape, scaledShape, filletedShape, chamferedShape])\n\n      //You can also create boolean operations using Intersect\n      //let intersection = await Intersect(movedShape, rotatedShape)\n\n      return finalAssembly\n\n      /**\n      Built-in Functions Available:\n      - Move(geometry, x, y, z) - Move a shape in 3D space\n      - Rotate(geometry, x, y, z) - Rotate a shape around X, Y, Z axes (degrees)\n      - Scale(geometry, factor) - Scale a shape by a factor\n      - Assembly([shapes]) - Combine multiple shapes into an assembly\n      - Intersect(shape1, shape2) - Boolean intersection of two shapes\n      - GetBounds(geometry) - Get the bounding box of a shape\n      - Fillet(geometry, radius) - Round edges with specified radius\n      - Chamfer(geometry, size) - Bevel edges with specified size\n\n      To Use the Code Atom, enter your inputs to the input list as an object array:\n      const Inputs = [\n        {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n        {inputName: \"dist\", type: \"number\", defaultValue: 5},\n        {inputName: \"height\", type: \"number\", defaultValue: 10}\n      ]\n\n      Access imported geometry using library[inputName] - the built-in functions handle \n      the complexity of accessing geometry arrays and maintaining metadata automatically.\n\n      Simple Example - Move a shape:\n         const Inputs = [\n          {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n          {inputName: \"x\", type: \"number\", defaultValue: 5}\n        ]\n        let movedShape = await Move(library[shape], x, 0, 0)\n        return movedShape\n      */\n      "
-        },
-        {
           "atomType": "Extrude",
           "name": "Extrude",
-          "x": 0.1991111111111111,
-          "y": 0.782608695652174,
+          "x": 0.3057777777777778,
+          "y": 0.2888198757763975,
           "uniqueID": "81657b52-22c7-4f96-91fd-dd03d72be4ee",
           "ioValues": [
             {
@@ -146,9 +92,9 @@
         {
           "atomType": "Assembly",
           "name": "Assembly",
-          "x": 0.3857777777777778,
-          "y": 0.4906832298136645,
-          "uniqueID": "b3a19940-3ee4-4e95-ac2b-913b2ca26080",
+          "x": 0.41866666666666663,
+          "y": 0.3416149068322981,
+          "uniqueID": "b34dd9de-8dc8-4f1a-9468-0b0179acc3e6",
           "ioValues": [
             {
               "name": "Shape 1",
@@ -176,56 +122,27 @@
                 "tags": [],
                 "bom": []
               }
-            },
-            {
-              "name": "Shape 2",
-              "ioValue": {
-                "geometry": "move-extrude-rectangle-100-10-{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]}-10-10-0-0",
-                "dimension": "3D",
-                "plane": {
-                  "origin": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "xDir": [
-                    1,
-                    0,
-                    0
-                  ],
-                  "normal": [
-                    0,
-                    0,
-                    1
-                  ]
-                },
-                "color": "#aad7f2",
-                "tags": [],
-                "bom": []
-              }
             }
           ]
         },
         {
-          "atomType": "Move",
-          "name": "Move",
-          "x": 0.1937777777777778,
-          "y": 0.3012422360248447,
-          "uniqueID": "b6a45e4b-e0ec-4d70-bd18-71dc80705ef0",
+          "atomType": "Code",
+          "name": "Code",
+          "x": 0.5288888888888889,
+          "y": 0.546583850931677,
+          "uniqueID": "222ca9c9-6823-4afc-9fd0-a565b2e38b70",
           "ioValues": [
             {
-              "name": "xDist",
+              "name": "dist",
+              "ioValue": 5
+            },
+            {
+              "name": "height",
               "ioValue": 10
-            },
-            {
-              "name": "yDist",
-              "ioValue": 0
-            },
-            {
-              "name": "zDist",
-              "ioValue": 0
             }
-          ]
+          ],
+          "codeVersion": 1,
+          "code": "\n      const Inputs = [\n       {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n      {inputName: \"dist\", type: \"number\", defaultValue: 5},\n        {inputName: \"height\", type: \"number\", defaultValue: 10}\n      ]\n      //This defines the molecules inputs and creates variables with the same names which can be referenced in the code\n\n      //Gets the shape from the library - no need to clone or access geometry directly\n      let importedShape = library[shape]\n\n      //Use the built-in Move function to move the shape in the X direction\n      let movedShape = await Move(importedShape, dist, 0, 0)\n\n      //Use the built-in Rotate function to rotate the shape\n      let rotatedShape = await Rotate(importedShape, 0, 45, 0)\n\n      //Use the built-in Scale function to make the shape smaller\n      let scaledShape = await Scale(importedShape, 0.8)\n\n      //Console.log works for debugging to better see what is happening under the hood\n      console.log(\"Original shape bounds:\", GetBounds(importedShape))\n      console.log(\"Moved shape bounds:\", GetBounds(movedShape))\n\n      //Create a new shape from scratch using replicad\n      let createdRectangle = replicad.drawRectangle(5, 7)\n      const newPlane = new replicad.Plane().pivot(0, 'Y')\n      let createdShape = createdRectangle.sketchOnPlane(newPlane).extrude(height)\n\n      //Wrap the raw replicad geometry in our assembly format\n      let shape2 = {\n          geometry: [createdShape],\n          dimension: \"3D\",\n          tags: [\"createdShape\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\n\n      //Use the built-in Fillet function to round the edges\n      let filletedShape = await Fillet(shape2, 0.5)\n\n      //Use the built-in Chamfer function to bevel the edges  \n      let chamferedShape = await Chamfer(movedShape, 0.3)\n\n      //Use the built-in Assembly function to combine multiple shapes\n      let finalAssembly = await Assembly([rotatedShape, scaledShape, filletedShape, chamferedShape])\n\n      //You can also create boolean operations using Intersect\n      //let intersection = await Intersect(movedShape, rotatedShape)\n\n      return finalAssembly\n\n      /**\n      Built-in Functions Available:\n      - Move(geometry, x, y, z) - Move a shape in 3D space\n      - Rotate(geometry, x, y, z) - Rotate a shape around X, Y, Z axes (degrees)\n      - Scale(geometry, factor) - Scale a shape by a factor\n      - Assembly([shapes]) - Combine multiple shapes into an assembly\n      - Intersect(shape1, shape2) - Boolean intersection of two shapes\n      - GetBounds(geometry) - Get the bounding box of a shape\n      - Fillet(geometry, radius) - Round edges with specified radius\n      - Chamfer(geometry, size) - Bevel edges with specified size\n\n      To Use the Code Atom, enter your inputs to the input list as an object array:\n      const Inputs = [\n        {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n        {inputName: \"dist\", type: \"number\", defaultValue: 5},\n        {inputName: \"height\", type: \"number\", defaultValue: 10}\n      ]\n\n      Access imported geometry using library[inputName] - the built-in functions handle \n      the complexity of accessing geometry arrays and maintaining metadata automatically.\n\n      Simple Example - Move a shape:\n         const Inputs = [\n          {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n          {inputName: \"x\", type: \"number\", defaultValue: 5}\n        ]\n        let movedShape = await Move(library[shape], x, 0, 0)\n        return movedShape\n      */\n      "
         }
       ],
       "allConnectors": [
@@ -239,31 +156,13 @@
           "ap1Name": "geometry",
           "ap2Name": "Shape 1",
           "ap1ID": "81657b52-22c7-4f96-91fd-dd03d72be4ee",
-          "ap2ID": "b3a19940-3ee4-4e95-ac2b-913b2ca26080"
-        },
-        {
-          "ap1Name": "geometry",
-          "ap2Name": "geometry",
-          "ap1ID": "81657b52-22c7-4f96-91fd-dd03d72be4ee",
-          "ap2ID": "b6a45e4b-e0ec-4d70-bd18-71dc80705ef0"
+          "ap2ID": "b34dd9de-8dc8-4f1a-9468-0b0179acc3e6"
         },
         {
           "ap1Name": "geometry",
           "ap2Name": "shape",
-          "ap1ID": "81657b52-22c7-4f96-91fd-dd03d72be4ee",
-          "ap2ID": "f85b090b-011e-4dca-8274-1748ba8d2dba"
-        },
-        {
-          "ap1Name": "geometry",
-          "ap2Name": "shape",
-          "ap1ID": "b3a19940-3ee4-4e95-ac2b-913b2ca26080",
-          "ap2ID": "476b4016-53d8-4d25-8574-49722be1a178"
-        },
-        {
-          "ap1Name": "geometry",
-          "ap2Name": "Shape 2",
-          "ap1ID": "b6a45e4b-e0ec-4d70-bd18-71dc80705ef0",
-          "ap2ID": "b3a19940-3ee4-4e95-ac2b-913b2ca26080"
+          "ap1ID": "b34dd9de-8dc8-4f1a-9468-0b0179acc3e6",
+          "ap2ID": "222ca9c9-6823-4afc-9fd0-a565b2e38b70"
         }
       ],
       "fileTypeVersion": 1,
