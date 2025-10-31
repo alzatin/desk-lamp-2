@@ -44,109 +44,6 @@
     },
     {
       "atomType": "Molecule",
-      "name": "Molecule",
-      "x": 0.3635555555555556,
-      "y": 0.6055900621118013,
-      "uniqueID": "ee346790-0e77-4040-b939-ac999586e599",
-      "ioValues": [],
-      "topLevel": false,
-      "allAtoms": [
-        {
-          "atomType": "Output",
-          "name": "Output",
-          "x": 0.98,
-          "y": 0.5,
-          "uniqueID": "ae833fdd-1ba2-4ecb-9970-1ad541f5c596",
-          "ioValues": []
-        },
-        {
-          "atomType": "Rectangle",
-          "name": "Rectangle",
-          "x": 0.11822222222222223,
-          "y": 0.49689440993788814,
-          "uniqueID": "ab9dce64-4411-4f75-8d1f-41dabab4d5e1",
-          "ioValues": [
-            {
-              "name": "x length",
-              "ioValue": 100
-            },
-            {
-              "name": "y length",
-              "ioValue": 10
-            }
-          ]
-        },
-        {
-          "atomType": "Extrude",
-          "name": "Extrude",
-          "x": 0.3057777777777778,
-          "y": 0.2888198757763975,
-          "uniqueID": "81657b52-22c7-4f96-91fd-dd03d72be4ee",
-          "ioValues": [
-            {
-              "name": "height",
-              "ioValue": 10
-            }
-          ]
-        },
-        {
-          "atomType": "Assembly",
-          "name": "Assembly",
-          "x": 0.41866666666666663,
-          "y": 0.3416149068322981,
-          "uniqueID": "b34dd9de-8dc8-4f1a-9468-0b0179acc3e6",
-          "ioValues": [
-            {
-              "name": "Shape 1",
-              "ioValue": null
-            }
-          ]
-        },
-        {
-          "atomType": "Code",
-          "name": "Code",
-          "x": 0.592,
-          "y": 0.639751552795031,
-          "uniqueID": "222ca9c9-6823-4afc-9fd0-a565b2e38b70",
-          "ioValues": [
-            {
-              "name": "dist",
-              "ioValue": 5
-            },
-            {
-              "name": "height",
-              "ioValue": 10
-            }
-          ],
-          "codeVersion": 1,
-          "code": "\n      const Inputs = [\n       {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n      {inputName: \"dist\", type: \"number\", defaultValue: 5},\n        {inputName: \"height\", type: \"number\", defaultValue: 10}\n      ]\n      //This defines the molecules inputs and creates variables with the same names which can be referenced in the code\n\n      //Gets the shape from the library - no need to clone or access geometry directly\n      let importedShape = library[shape]\n\n      //Use the built-in Move function to move the shape in the X direction\n      let movedShape = await Move(importedShape, dist, 0, 0)\n\n      //Use the built-in Rotate function to rotate the shape\n      let rotatedShape = await Rotate(importedShape, 0, 45, 0)\n\n      //Use the built-in Scale function to make the shape smaller\n      let scaledShape = await Scale(importedShape, 0.8)\n\n      //Console.log works for debugging to better see what is happening under the hood\n      console.log(\"Original shape bounds:\", GetBounds(importedShape))\n      console.log(\"Moved shape bounds:\", GetBounds(movedShape))\n\n      //Create a new shape from scratch using replicad\n      let createdRectangle = replicad.drawRectangle(5, 7)\n      const newPlane = new replicad.Plane().pivot(0, 'Y')\n      let createdShape = createdRectangle.sketchOnPlane(newPlane).extrude(height)\n      let createdCircle = replicad.drawCircle(2)\n      let secondShape = createdCircle.sketchOnPlane(newPlane).extrude(30)\n\n      //Wrap the raw replicad geometry in our assembly format\n      let shape2 = {\n          geometry: [createdShape.cut(secondShape)],\n          dimension: \"3D\",\n          tags: [\"createdShape\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\n\n      return shape2\n\n      /**\n      Built-in Functions Available:\n      - Move(geometry, x, y, z) - Move a shape in 3D space\n      - Rotate(geometry, x, y, z) - Rotate a shape around X, Y, Z axes (degrees)\n      - Scale(geometry, factor) - Scale a shape by a factor\n      - Assembly([shapes]) - Combine multiple shapes into an assembly\n      - Intersect(shape1, shape2) - Boolean intersection of two shapes\n      - GetBounds(geometry) - Get the bounding box of a shape\n      - Fillet(geometry, radius) - Round edges with specified radius\n      - Chamfer(geometry, size) - Bevel edges with specified size\n\n      To Use the Code Atom, enter your inputs to the input list as an object array:\n      const Inputs = [\n        {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n        {inputName: \"dist\", type: \"number\", defaultValue: 5},\n        {inputName: \"height\", type: \"number\", defaultValue: 10}\n      ]\n\n      Access imported geometry using library[inputName] - the built-in functions handle \n      the complexity of accessing geometry arrays and maintaining metadata automatically.\n\n      Simple Example - Move a shape:\n         const Inputs = [\n          {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n          {inputName: \"x\", type: \"number\", defaultValue: 5}\n        ]\n        let movedShape = await Move(library[shape], x, 0, 0)\n        return movedShape\n      */\n      "
-        }
-      ],
-      "allConnectors": [
-        {
-          "ap1Name": "geometry",
-          "ap2Name": "geometry",
-          "ap1ID": "ab9dce64-4411-4f75-8d1f-41dabab4d5e1",
-          "ap2ID": "81657b52-22c7-4f96-91fd-dd03d72be4ee"
-        },
-        {
-          "ap1Name": "geometry",
-          "ap2Name": "Shape 1",
-          "ap1ID": "81657b52-22c7-4f96-91fd-dd03d72be4ee",
-          "ap2ID": "b34dd9de-8dc8-4f1a-9468-0b0179acc3e6"
-        },
-        {
-          "ap1Name": "geometry",
-          "ap2Name": "shape",
-          "ap1ID": "b34dd9de-8dc8-4f1a-9468-0b0179acc3e6",
-          "ap2ID": "222ca9c9-6823-4afc-9fd0-a565b2e38b70"
-        }
-      ],
-      "fileTypeVersion": 1,
-      "compiledBom": {}
-    },
-    {
-      "atomType": "Molecule",
       "name": "Top",
       "x": 0.4106666666666667,
       "y": 0.25155279503105593,
@@ -1359,6 +1256,382 @@
           "ap2ID": "ca850788-47e7-4b92-978e-05f10cf752ae"
         }
       ],
+      "fileTypeVersion": 1,
+      "compiledBom": []
+    },
+    {
+      "atomType": "GitHubMolecule",
+      "name": "Molecule",
+      "x": 0.27009113504556753,
+      "y": 0.515527950310559,
+      "uniqueID": "f2b22eab-0683-4821-a71b-7dd262b4f11f",
+      "ioValues": [
+        {
+          "name": "Xlen",
+          "ioValue": 200,
+          "currentEquation": "200"
+        },
+        {
+          "name": "Ylen",
+          "ioValue": 15,
+          "currentEquation": "15"
+        },
+        {
+          "name": "thickness",
+          "ioValue": 15,
+          "currentEquation": "15"
+        }
+      ],
+      "topLevel": false,
+      "allAtoms": [
+        {
+          "atomType": "Output",
+          "name": "Output",
+          "x": 0.98,
+          "y": 0.5,
+          "uniqueID": "592887b7-fc2f-4546-add7-8a6770d6d258",
+          "ioValues": []
+        },
+        {
+          "atomType": "Rectangle",
+          "name": "Rectangle",
+          "x": 0.12488083889418494,
+          "y": 0.5652173913043479,
+          "uniqueID": "7be901e3-3c24-405e-a367-ee8a51fe2fb1",
+          "ioValues": [
+            {
+              "name": "x length",
+              "ioValue": 200
+            },
+            {
+              "name": "y length",
+              "ioValue": 15
+            }
+          ]
+        },
+        {
+          "atomType": "Extrude",
+          "name": "Extrude",
+          "x": 0.30123927550047663,
+          "y": 0.6180124223602484,
+          "uniqueID": "d91c3d07-49d4-4f05-aef5-fad8c4ef1b4d",
+          "ioValues": [
+            {
+              "name": "height",
+              "ioValue": 15
+            }
+          ]
+        },
+        {
+          "atomType": "Code",
+          "name": "Code",
+          "x": 0.5357483317445185,
+          "y": 0.41304347826086957,
+          "uniqueID": "ac3f2092-df55-4254-95ec-e88dbff73266",
+          "ioValues": [
+            {
+              "name": "dist",
+              "ioValue": 2
+            },
+            {
+              "name": "height",
+              "ioValue": 15
+            },
+            {
+              "name": "dovetailWidth",
+              "ioValue": 5
+            },
+            {
+              "name": "dovetailHeight",
+              "ioValue": 3
+            },
+            {
+              "name": "dovetailOffset",
+              "ioValue": 10
+            }
+          ],
+          "codeVersion": 1,
+          "code": "\n      const Inputs = [\n       {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n      {inputName: \"dist\", type: \"number\", defaultValue: 5},\n        {inputName: \"height\", type: \"number\", defaultValue: 10},\n         {inputName: \"dovetailWidth\", type: \"number\", defaultValue: 3},\n  {inputName: \"dovetailHeight\", type: \"number\", defaultValue: 2},\n  {inputName: \"dovetailOffset\", type: \"number\", defaultValue: 1}\n      ]\n      //This defines the molecules inputs and creates variables with the same names which can be referenced in the code\n\n      //Gets the shape from the library - no need to clone or access geometry directly\n      let importedShape = library[shape]\n\n      //Use the built-in Move function to move the shape in the X direction\n      let movedShape = await Move(importedShape, dist, 0, 0)\n\n      //Use the built-in Rotate function to rotate the shape\n      let rotatedShape = await Rotate(importedShape, 0, 45, 0)\n\n      //Use the built-in Scale function to make the shape smaller\n      let scaledShape = await Scale(importedShape, 0.8)\n\n      //Console.log works for debugging to better see what is happening under the hood\n      console.log(\"Original shape bounds:\", GetBounds(importedShape))\n      console.log(\"Moved shape bounds:\", GetBounds(movedShape))\n\n      const newPlane = new replicad.Plane().pivot(0, 'Y')\n\n// 1. Draw the full hexagon\nlet hexagon = replicad.drawPolysides(dovetailWidth, 6, 0);\n\n// 2. Draw a rectangle to cover half the hexagon (e.g., left side)\nlet halfRect = replicad.drawRectangle(dovetailWidth, dovetailWidth*2).translate([dovetailWidth/2, 0]);\n\n// 3. Intersect to get half-hexagon (or use Subtract for the other half)\nlet halfHexagon = hexagon.cut(halfRect);\n\n// 4. Extrude the half-hexagon\nlet dovetailCut = halfHexagon.sketchOnPlane(newPlane).extrude(height + 1)\n     \n// 4. Position the dovetail cut (centered, adjust as needed)\nlet bounds = importedShape.geometry[0].boundingBox.bounds\nconsole.log(bounds)\nconst min = bounds[0];\nconst max = bounds[1];\n// For the right end (max X), same orientation as left\nlet dovetailX = min[0] + dovetailWidth/1.3 ; // aligns the flat face with the right end\nlet dovetailY = (min[1] + max[1]) / 2;\n\nlet positionedDovetail = dovetailCut.clone().translate([dovetailX, dovetailY, 0]);\n\n      //Wrap the raw replicad geometry in our assembly format\n      let shape2 = {\n          geometry: [positionedDovetail],\n          dimension: \"3D\",\n          tags: [\"createdShape\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\n\n      //Use the built-in Fillet function to round the edges\n      let filletedShape = await Fillet(shape2, 0.5)\n\n      //Use the built-in Chamfer function to bevel the edges  \n      let chamferedShape = await Chamfer(movedShape, 0.3)\n\n      //Use the built-in Assembly function to combine multiple shapes\n      let finalAssembly = await Assembly([rotatedShape, scaledShape, filletedShape, chamferedShape])\n\n      //You can also create boolean operations using Intersect\n      //let intersection = await Intersect(movedShape, rotatedShape)\n\n      return shape2\n\n      /**\n      Built-in Functions Available:\n      - Move(geometry, x, y, z) - Move a shape in 3D space\n      - Rotate(geometry, x, y, z) - Rotate a shape around X, Y, Z axes (degrees)\n      - Scale(geometry, factor) - Scale a shape by a factor\n      - Assembly([shapes]) - Combine multiple shapes into an assembly\n      - Intersect(shape1, shape2) - Boolean intersection of two shapes\n      - GetBounds(geometry) - Get the bounding box of a shape\n      - Fillet(geometry, radius) - Round edges with specified radius\n      - Chamfer(geometry, size) - Bevel edges with specified size\n\n      To Use the Code Atom, enter your inputs to the input list as an object array:\n      const Inputs = [\n        {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n        {inputName: \"dist\", type: \"number\", defaultValue: 5},\n        {inputName: \"height\", type: \"number\", defaultValue: 10}\n      ]\n\n      Access imported geometry using library[inputName] - the built-in functions handle \n      the complexity of accessing geometry arrays and maintaining metadata automatically.\n\n      Simple Example - Move a shape:\n         const Inputs = [\n          {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n          {inputName: \"x\", type: \"number\", defaultValue: 5}\n        ]\n        let movedShape = await Move(library[shape], x, 0, 0)\n        return movedShape\n      */\n      "
+        },
+        {
+          "atomType": "Move",
+          "name": "Move",
+          "x": 0.47855100095328884,
+          "y": 0.1863354037267081,
+          "uniqueID": "d96e823e-0fc5-40a0-bdba-b2f74716a9e5",
+          "ioValues": [
+            {
+              "name": "xDist",
+              "ioValue": 30
+            },
+            {
+              "name": "yDist",
+              "ioValue": 0
+            },
+            {
+              "name": "zDist",
+              "ioValue": 0
+            }
+          ]
+        },
+        {
+          "atomType": "Difference",
+          "name": "Difference",
+          "x": 0.6758817921830315,
+          "y": 0.3105590062111801,
+          "uniqueID": "dd9f266c-fbd9-4941-89ff-bfb19793b3bd",
+          "ioValues": []
+        },
+        {
+          "atomType": "Input",
+          "name": "Xlen",
+          "x": 0.0264,
+          "y": 0.16,
+          "uniqueID": "44869beb-9a5d-4433-8877-7b5373b5caf9",
+          "ioValues": [],
+          "type": "number"
+        },
+        {
+          "atomType": "Input",
+          "name": "Ylen",
+          "x": 0.0264,
+          "y": 0.24,
+          "uniqueID": "f01694ff-b8e1-43ef-b50e-030d7c1b9811",
+          "ioValues": [],
+          "type": "number"
+        },
+        {
+          "atomType": "Input",
+          "name": "thickness",
+          "x": 0.0264,
+          "y": 0.32,
+          "uniqueID": "542ccc84-aeb6-4aeb-b101-3f00f02d1860",
+          "ioValues": [],
+          "type": "number"
+        },
+        {
+          "atomType": "Equation",
+          "name": "x/3",
+          "x": 0.24785510009532888,
+          "y": 0.2919254658385093,
+          "uniqueID": "607f4e25-2932-46b1-8da3-ecd0511062b9",
+          "ioValues": [
+            {
+              "name": "x",
+              "ioValue": 15
+            }
+          ],
+          "currentEquation": "x/3"
+        },
+        {
+          "atomType": "Move",
+          "name": "Move",
+          "x": 0.44709246901811245,
+          "y": 0.8478260869565217,
+          "uniqueID": "36708277-f314-43dc-838b-ef08a23a77bb",
+          "ioValues": [
+            {
+              "name": "xDist",
+              "ioValue": -30
+            },
+            {
+              "name": "yDist",
+              "ioValue": 0
+            },
+            {
+              "name": "zDist",
+              "ioValue": 0
+            }
+          ]
+        },
+        {
+          "atomType": "Tag",
+          "name": "ex",
+          "x": 0.5662535748331744,
+          "y": 0.8167701863354037,
+          "uniqueID": "d5320b34-c472-49af-ac1a-6b20d1dd89a0",
+          "ioValues": [],
+          "tags": [
+            "ex"
+          ]
+        },
+        {
+          "atomType": "Assembly",
+          "name": "Assembly",
+          "x": 0.7483317445185892,
+          "y": 0.6521739130434783,
+          "uniqueID": "6a084319-7f3f-4ac8-980c-d5224586e47a",
+          "ioValues": [
+            {
+              "name": "Shape 1",
+              "ioValue": null
+            },
+            {
+              "name": "Shape 2",
+              "ioValue": {
+                "geometry": "cut-extrude-rectangle-200-15-{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]}-15-f986c0bc-2-15-5-3-10-{\"geometry\":\"extrude-rectangle-200-15-{\\\"origin\\\":[0,0,0],\\\"xDir\\\":[1,0,0],\\\"normal\\\":[0,0,1]}-15\",\"dimension\":\"3D\",\"plane\":{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]},\"color\":\"#aad7f2\",\"tags\":[],\"bom\":[]}-11",
+                "dimension": "3D",
+                "plane": {
+                  "origin": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "xDir": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ]
+                },
+                "color": "#aad7f2",
+                "tags": [],
+                "bom": []
+              }
+            }
+          ]
+        },
+        {
+          "atomType": "ExtractTag",
+          "name": "Extract Tag",
+          "x": 0.8846520495710201,
+          "y": 0.6583850931677019,
+          "uniqueID": "b5025405-f338-438a-9d9d-76d3684f2283",
+          "ioValues": [],
+          "tag": "ex",
+          "tagIndex": 0
+        }
+      ],
+      "allConnectors": [
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "geometry",
+          "ap1ID": "7be901e3-3c24-405e-a367-ee8a51fe2fb1",
+          "ap2ID": "d91c3d07-49d4-4f05-aef5-fad8c4ef1b4d"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "geometry",
+          "ap1ID": "d91c3d07-49d4-4f05-aef5-fad8c4ef1b4d",
+          "ap2ID": "d96e823e-0fc5-40a0-bdba-b2f74716a9e5"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "geometry1",
+          "ap1ID": "d91c3d07-49d4-4f05-aef5-fad8c4ef1b4d",
+          "ap2ID": "dd9f266c-fbd9-4941-89ff-bfb19793b3bd"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "shape",
+          "ap1ID": "d91c3d07-49d4-4f05-aef5-fad8c4ef1b4d",
+          "ap2ID": "ac3f2092-df55-4254-95ec-e88dbff73266"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "geometry",
+          "ap1ID": "d91c3d07-49d4-4f05-aef5-fad8c4ef1b4d",
+          "ap2ID": "36708277-f314-43dc-838b-ef08a23a77bb"
+        },
+        {
+          "ap1Name": "output",
+          "ap2Name": "geometry2",
+          "ap1ID": "ac3f2092-df55-4254-95ec-e88dbff73266",
+          "ap2ID": "dd9f266c-fbd9-4941-89ff-bfb19793b3bd"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "number or geometry",
+          "ap1ID": "dd9f266c-fbd9-4941-89ff-bfb19793b3bd",
+          "ap2ID": "592887b7-fc2f-4546-add7-8a6770d6d258"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "Shape 2",
+          "ap1ID": "dd9f266c-fbd9-4941-89ff-bfb19793b3bd",
+          "ap2ID": "6a084319-7f3f-4ac8-980c-d5224586e47a"
+        },
+        {
+          "ap1Name": "number or geometry",
+          "ap2Name": "x length",
+          "ap1ID": "44869beb-9a5d-4433-8877-7b5373b5caf9",
+          "ap2ID": "7be901e3-3c24-405e-a367-ee8a51fe2fb1"
+        },
+        {
+          "ap1Name": "number or geometry",
+          "ap2Name": "y length",
+          "ap1ID": "f01694ff-b8e1-43ef-b50e-030d7c1b9811",
+          "ap2ID": "7be901e3-3c24-405e-a367-ee8a51fe2fb1"
+        },
+        {
+          "ap1Name": "number or geometry",
+          "ap2Name": "x",
+          "ap1ID": "f01694ff-b8e1-43ef-b50e-030d7c1b9811",
+          "ap2ID": "607f4e25-2932-46b1-8da3-ecd0511062b9"
+        },
+        {
+          "ap1Name": "number or geometry",
+          "ap2Name": "height",
+          "ap1ID": "542ccc84-aeb6-4aeb-b101-3f00f02d1860",
+          "ap2ID": "d91c3d07-49d4-4f05-aef5-fad8c4ef1b4d"
+        },
+        {
+          "ap1Name": "number or geometry",
+          "ap2Name": "height",
+          "ap1ID": "542ccc84-aeb6-4aeb-b101-3f00f02d1860",
+          "ap2ID": "ac3f2092-df55-4254-95ec-e88dbff73266"
+        },
+        {
+          "ap1Name": "result",
+          "ap2Name": "dovetailWidth",
+          "ap1ID": "607f4e25-2932-46b1-8da3-ecd0511062b9",
+          "ap2ID": "ac3f2092-df55-4254-95ec-e88dbff73266"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "geometry",
+          "ap1ID": "36708277-f314-43dc-838b-ef08a23a77bb",
+          "ap2ID": "d5320b34-c472-49af-ac1a-6b20d1dd89a0"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "Shape 1",
+          "ap1ID": "d5320b34-c472-49af-ac1a-6b20d1dd89a0",
+          "ap2ID": "6a084319-7f3f-4ac8-980c-d5224586e47a"
+        },
+        {
+          "ap1Name": "geometry",
+          "ap2Name": "geometry",
+          "ap1ID": "6a084319-7f3f-4ac8-980c-d5224586e47a",
+          "ap2ID": "b5025405-f338-438a-9d9d-76d3684f2283"
+        }
+      ],
+      "parentRepo": {
+        "repoName": "Dovetail-cutter",
+        "dateCreated": "2025-10-31T19:25:34Z",
+        "readMe": "https://raw.githubusercontent.com/alzatin/Dovetail-cutter/master/README.md?sanitize=true",
+        "yyyy": 2025,
+        "topMoleculeID": "12121704-6eed-4251-b297-8af161198dbd",
+        "topics": [
+          "abundance-tool"
+        ],
+        "githubMoleculesUsed": [],
+        "html_url": "https://github.com/alzatin/Dovetail-cutter",
+        "parentRepo": null,
+        "forks": 0,
+        "dateModified": "10/31/2025",
+        "ranking": 0,
+        "searchField": "dovetail-cutter alzatin creates and extruded rectangle of a given len,wid and height with a dovetail mortise cut out on its long end.  abundance-tool",
+        "owner": "alzatin",
+        "description": "Creates and extruded rectangle of a given len,wid and height with a dovetail mortise cut out on its long end. ",
+        "svgURL": "https://raw.githubusercontent.com/alzatin/Dovetail-cutter/master/project.svg?sanitize=true",
+        "contentURL": "https://raw.githubusercontent.com/alzatin/Dovetail-cutter/master/project.abundance?sanitize=true",
+        "isLocal": false
+      },
       "fileTypeVersion": 1,
       "compiledBom": []
     }
