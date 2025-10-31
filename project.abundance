@@ -45,8 +45,8 @@
     {
       "atomType": "Molecule",
       "name": "Molecule",
-      "x": 0.5721830985915493,
-      "y": 0.6180124223602484,
+      "x": 0.3626666666666667,
+      "y": 0.6242236024844721,
       "uniqueID": "ee346790-0e77-4040-b939-ac999586e599",
       "ioValues": [],
       "topLevel": false,
@@ -62,8 +62,8 @@
         {
           "atomType": "Rectangle",
           "name": "Rectangle",
-          "x": 0.2390331244404655,
-          "y": 0.4906832298136645,
+          "x": 0.136,
+          "y": 0.6739130434782609,
           "uniqueID": "ab9dce64-4411-4f75-8d1f-41dabab4d5e1",
           "ioValues": [
             {
@@ -79,8 +79,8 @@
         {
           "atomType": "Code",
           "name": "Code",
-          "x": 0.5102954341987466,
-          "y": 0.24534161490683226,
+          "x": 0.4533333333333333,
+          "y": 0.41304347826086957,
           "uniqueID": "476b4016-53d8-4d25-8574-49722be1a178",
           "ioValues": [
             {
@@ -109,7 +109,7 @@
             }
           ],
           "codeVersion": 1,
-          "code": "const Inputs = [\n  {inputName: \"dovetailWidth\", type: \"number\", defaultValue: 5},\n  {inputName: \"dovetailHeight\", type: \"number\", defaultValue: 10},\n  {inputName: \"dovetailDepth\", type: \"number\", defaultValue: 5},\n  {inputName: \"dovetailX\", type: \"number\", defaultValue: 0},\n  {inputName: \"dovetailY\", type: \"number\", defaultValue: 0},\n  {inputName: \"dovetailZ\", type: \"number\", defaultValue: 0}\n];\n\n\n\n //Create a new shape from scratch using replicad\n      let createdRectangle = replicad.drawRectangle(5, 7)\n      const newPlane = new replicad.Plane().pivot(0, 'Y')\n      let createdShape = createdRectangle.sketchOnPlane(newPlane).extrude(dovetailHeight)\n\n      //Wrap the raw replicad geometry in our assembly format\n      let shape2 = {\n          geometry: [createdShape],\n          dimension: \"3D\",\n          tags: [\"createdShape\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\nreturn shape2\n\n//dovetailCutter = await Move(dovetailCutter, dovetailX, dovetailY, dovetailZ);\n\n// Subtract dovetail from input shape\n//let dovetailedShape = await CutAssembly(dovetailCutter,importedShape);\n\nreturn shape2;"
+          "code": "const Inputs = [\n  {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n  {inputName: \"dovetailWidth\", type: \"number\", defaultValue: 5},\n  {inputName: \"dovetailHeight\", type: \"number\", defaultValue: 10},\n  {inputName: \"dovetailDepth\", type: \"number\", defaultValue: 5},\n  {inputName: \"dovetailX\", type: \"number\", defaultValue: 0},\n  {inputName: \"dovetailY\", type: \"number\", defaultValue: 0},\n  {inputName: \"dovetailZ\", type: \"number\", defaultValue: 0}\n];\n\n\nlet importedShape = library[shape]\n //Create a new shape from scratch using replicad\n      let createdRectangle = replicad.drawRectangle(5, 7)\n      const newPlane = new replicad.Plane().pivot(0, 'Y')\n      let createdShape = createdRectangle.sketchOnPlane(newPlane).extrude(dovetailHeight)\n\n      //Wrap the raw replicad geometry in our assembly format\n      let shape2 = {\n          geometry: [createdShape],\n          dimension: \"3D\",\n          tags: [\"createdShape\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\n\n\n//dovetailCutter = await Move(dovetailCutter, dovetailX, dovetailY, dovetailZ);\n\n// Subtract dovetail from input shape\nlet dovetailedShape = await CutAssembly(shape2,importedShape);\n\nreturn dovetailedShape;"
         },
         {
           "atomType": "Code",
@@ -133,8 +133,8 @@
         {
           "atomType": "Extrude",
           "name": "Extrude",
-          "x": 0.3178155774395703,
-          "y": 0.7391304347826086,
+          "x": 0.31911111111111107,
+          "y": 0.7639751552795032,
           "uniqueID": "81657b52-22c7-4f96-91fd-dd03d72be4ee",
           "ioValues": [
             {
@@ -142,37 +142,6 @@
               "ioValue": 10
             }
           ]
-        },
-        {
-          "atomType": "Gcode",
-          "name": "Gcode",
-          "x": 0.5335720680393912,
-          "y": 0.48136645962732916,
-          "uniqueID": "71851014-9055-4aca-a72f-39c96bcc8ac9",
-          "ioValues": [
-            {
-              "name": "Tool Size",
-              "ioValue": 6.35
-            },
-            {
-              "name": "Passes",
-              "ioValue": 1
-            },
-            {
-              "name": "Speed",
-              "ioValue": 1500
-            },
-            {
-              "name": "Cut Through",
-              "ioValue": 0
-            },
-            {
-              "name": "Part Name",
-              "ioValue": "Molecule"
-            }
-          ],
-          "partName": "Molecule",
-          "sortDirection": "Left"
         }
       ],
       "allConnectors": [
@@ -184,9 +153,9 @@
         },
         {
           "ap1Name": "geometry",
-          "ap2Name": "geometry",
+          "ap2Name": "shape",
           "ap1ID": "81657b52-22c7-4f96-91fd-dd03d72be4ee",
-          "ap2ID": "71851014-9055-4aca-a72f-39c96bcc8ac9"
+          "ap2ID": "476b4016-53d8-4d25-8574-49722be1a178"
         }
       ],
       "fileTypeVersion": 1,
@@ -195,8 +164,8 @@
     {
       "atomType": "Molecule",
       "name": "Top",
-      "x": 0.21566901408450706,
-      "y": 0.6180124223602484,
+      "x": 0.4106666666666667,
+      "y": 0.25155279503105593,
       "uniqueID": "452709b2-e998-4576-8f4f-41fa7a0147d8",
       "ioValues": [
         {
@@ -278,15 +247,84 @@
           "ioValues": [
             {
               "name": "Shape 1",
-              "ioValue": null
+              "ioValue": {
+                "geometry": "move-rotate-extrude-shrinkWrap-assemblyFuse-4ced6025-3-120-{\"geometry\":\"move-circle-5-35-0-0\",\"dimension\":\"2D\",\"tags\":[],\"plane\":{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]},\"color\":\"#aad7f2\",\"bom\":[]}-6-4ced6025-3-120-{\"geometry\":\"move-circle-5-35-0-0\",\"dimension\":\"2D\",\"tags\":[],\"plane\":{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]},\"color\":\"#aad7f2\",\"bom\":[]}-7-4ced6025-3-120-{\"geometry\":\"move-circle-5-35-0-0\",\"dimension\":\"2D\",\"tags\":[],\"plane\":{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]},\"color\":\"#aad7f2\",\"bom\":[]}-8-50-{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]}-7-90--60-90-10-60-20",
+                "dimension": "3D",
+                "tags": [],
+                "color": "#aad7f2",
+                "plane": {
+                  "origin": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "xDir": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ]
+                },
+                "bom": []
+              }
             },
             {
               "name": "Shape 2",
-              "ioValue": null
+              "ioValue": {
+                "geometry": "ee563840-1.5-{\"geometry\":\"fuse-extrude-cut-circle-30-circle-19-{\\\"origin\\\":[0,0,0],\\\"xDir\\\":[1,0,0],\\\"normal\\\":[0,0,1]}-10-move-rotate-extrude-rectangle-30-15-{\\\"origin\\\":[0,0,0],\\\"xDir\\\":[1,0,0],\\\"normal\\\":[0,0,1]}-15-0-90-0--5-30-15\",\"tags\":[],\"bom\":[],\"plane\":{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]},\"color\":\"#aad7f2\",\"dimension\":\"3D\"}-0",
+                "tags": [],
+                "color": "#aad7f2",
+                "plane": {
+                  "origin": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "xDir": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ]
+                },
+                "bom": [],
+                "dimension": "3D"
+              }
             },
             {
               "name": "Shape 3",
-              "ioValue": null
+              "ioValue": {
+                "geometry": "move-rotate-extrude-shrinkWrap-assemblyFuse-4ced6025-3-120-{\"geometry\":\"move-circle-5-35-0-0\",\"dimension\":\"2D\",\"tags\":[],\"plane\":{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]},\"color\":\"#aad7f2\",\"bom\":[]}-6-4ced6025-3-120-{\"geometry\":\"move-circle-5-35-0-0\",\"dimension\":\"2D\",\"tags\":[],\"plane\":{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]},\"color\":\"#aad7f2\",\"bom\":[]}-7-4ced6025-3-120-{\"geometry\":\"move-circle-5-35-0-0\",\"dimension\":\"2D\",\"tags\":[],\"plane\":{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]},\"color\":\"#aad7f2\",\"bom\":[]}-8-50-{\"origin\":[0,0,0],\"xDir\":[1,0,0],\"normal\":[0,0,1]}-7-90--60-90--12-60-20",
+                "dimension": "3D",
+                "tags": [],
+                "color": "#aad7f2",
+                "plane": {
+                  "origin": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "xDir": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ]
+                },
+                "bom": []
+              }
             }
           ]
         },
