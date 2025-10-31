@@ -79,8 +79,8 @@
         {
           "atomType": "Code",
           "name": "Code",
-          "x": 0.5893333333333334,
-          "y": 0.37888198757763975,
+          "x": 0.5582222222222222,
+          "y": 0.37577639751552794,
           "uniqueID": "476b4016-53d8-4d25-8574-49722be1a178",
           "ioValues": [
             {
@@ -109,13 +109,13 @@
             }
           ],
           "codeVersion": 1,
-          "code": "const Inputs = [\n  {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n  {inputName: \"dovetailWidth\", type: \"number\", defaultValue: 5},\n  {inputName: \"dovetailHeight\", type: \"number\", defaultValue: 10},\n  {inputName: \"dovetailDepth\", type: \"number\", defaultValue: 5},\n  {inputName: \"dovetailX\", type: \"number\", defaultValue: 0},\n  {inputName: \"dovetailY\", type: \"number\", defaultValue: 0},\n  {inputName: \"dovetailZ\", type: \"number\", defaultValue: 0}\n];\n\n\nlet importedShape = library[shape]\n //Create a new shape from scratch using replicad\n      let createdRectangle = replicad.drawRectangle(5, 7)\n      const newPlane = new replicad.Plane().pivot(0, 'Y')\n      let createdShape = createdRectangle.sketchOnPlane(newPlane).extrude(dovetailHeight)\n\n      //Wrap the raw replicad geometry in our assembly format\n      let shape2 = {\n          geometry: [createdShape],\n          dimension: \"3D\",\n          tags: [\"createdShape\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\n\n\n//dovetailCutter = await Move(dovetailCutter, dovetailX, dovetailY, dovetailZ);\n\n// Subtract dovetail from input shape\nlet dovetailedShape = await CutAssembly(shape2,importedShape);\n\nreturn dovetailedShape;"
+          "code": "const Inputs = [\n  {inputName: \"shape\", type: \"geometry\", defaultValue: null},\n  {inputName: \"shape2\", type: \"geometry\", defaultValue: null},\n  {inputName: \"dovetailWidth\", type: \"number\", defaultValue: 5},\n  {inputName: \"dovetailHeight\", type: \"number\", defaultValue: 10},\n  {inputName: \"dovetailDepth\", type: \"number\", defaultValue: 5},\n  {inputName: \"dovetailX\", type: \"number\", defaultValue: 0},\n  {inputName: \"dovetailY\", type: \"number\", defaultValue: 0},\n  {inputName: \"dovetailZ\", type: \"number\", defaultValue: 0}\n];\n\n\nlet importedShape = library[shape]\nlet importedShape2 = library[shape2]\n //Create a new shape from scratch using replicad\n      let createdRectangle = replicad.drawRectangle(5, 7)\n      const newPlane = new replicad.Plane().pivot(0, 'Y')\n      let createdShape = createdRectangle.sketchOnPlane(newPlane).extrude(dovetailHeight)\n\n      //Wrap the raw replicad geometry in our assembly format\n      let shape2 = {\n          geometry: [createdShape],\n          dimension: \"3D\",\n          tags: [\"createdShape\"],\n          color: '#A3CE5B',\n          plane: newPlane,\n          bom: []\n      }\n\n\n//dovetailCutter = await Move(dovetailCutter, dovetailX, dovetailY, dovetailZ);\n\n// Subtract dovetail from input shape\nlet dovetailedShape = await CutAssembly(importedShape2,importedShape);\n\nreturn dovetailedShape;"
         },
         {
           "atomType": "Code",
           "name": "Code",
-          "x": 0.5595344673231871,
-          "y": 0.6521739130434783,
+          "x": 0.5582222222222222,
+          "y": 0.8726708074534161,
           "uniqueID": "f85b090b-011e-4dca-8274-1748ba8d2dba",
           "ioValues": [
             {
